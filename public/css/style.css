@@ -1,0 +1,23 @@
+.logo-size {
+    width: 90px;
+    height: 90px;
+}
+
+section {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+.custom-img-size {
+    width: 400px;
+    height: auto;
+}
+
+.bg-about{
+    background-color: #BED7D5;
+    border-radius: 50px;
+}
+
+.no-underline {
+    text-decoration: none;
+}
