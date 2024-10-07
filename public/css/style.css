@@ -1,6 +1,16 @@
+
+.heading {
+    font-family: "Bungee", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
 .logo-size {
-    width: 90px;
     height: 90px;
+}
+
+.no-underline {
+    text-decoration: none;
 }
 
 section {
@@ -13,11 +23,39 @@ section {
     height: auto;
 }
 
+p, h4, footer{
+    font-family: "League Spartan", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+/* BAGIAN HERO */
+.text-box{
+    padding-left: 25px;
+}
+
+#hero-heading{
+    color: #E60023;
+}
+
+/* BAGIAN ABOUT */
 .bg-about{
     background-color: #BED7D5;
     border-radius: 50px;
 }
 
-.no-underline {
-    text-decoration: none;
+/* BAGIAN FITUR */
+.feature-name {
+    margin-bottom: 100px;
+}
+.fa-users-line , .fa-comments, .fa-user-tie, .fa-bag-shopping{
+    font-size: 100px;
+    width: 76px;
+    height: 75px;
+}
+
+/* BAGIAN FOOTER */
+.social_icon{
+    font-size : 2rem;
+    padding-left: 0;
 }
