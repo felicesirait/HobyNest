@@ -4,7 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up Page</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
     <style>
+        
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -23,14 +30,14 @@
             background-color: #fff;
         }
         .left-section {
-            background-color: #053d5b;
+            background-color: #1f2937;
             color: white;
             width: 50%;
             padding: 50px 30px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
+            align-items: left;
         }
         .left-section img {
             max-width: 100%;
@@ -38,11 +45,13 @@
         }
         .left-section h1 {
             font-size: 32px;
-            margin-bottom: 10px;
+            margin-bottom: 3px;
+            text-align: left;
         }
         .left-section p {
-            font-size: 18px;
+            font-size: 12px;
             margin-bottom: 20px;
+            text-align: left;
         }
         .left-section .buttons {
             margin-top: 20px;
@@ -60,6 +69,7 @@
         }
         .form-group {
             margin-bottom: 20px;
+            position: relative;
         }
         .form-group label {
             display: block;
@@ -72,6 +82,13 @@
             font-size: 16px;
             border: 1px solid #ddd;
             border-radius: 5px;
+        }
+        .form-group .icon {
+            position: absolute;
+            right: 5px; 
+            top: 70%;
+            transform: translateY(-50%);
+            color: #888;
         }
         .sign-up-button {
             width: 100%;
@@ -98,29 +115,34 @@
 </head>
 <body>
     <div class="container">
-        <div class="left-section">
+        <div class="left-section" >
             <h1>Sign Up Now!</h1>
-            <p>Create Your Account</p>
-            <img src="your-image-path-here.png" alt="Sign Up Illustration">
+            <p>Create Your Account!</p>
+            <img src="img/sign-up-image.png" alt="gambar Sign Up">
         </div>
         <div class="right-section">
             <form>
+                <div class="already-have-account">
+                    <p>Already have an account? <a href="/Sign In">Sign In</a></p>
+                </div>
+
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" id="username" placeholder="Enter your username">
+                    <span class="icon"><i class="fas fa-user"></i>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" placeholder="Enter your email">
+                    <span class="icon"><i class="fas fa-envelope"></i>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" id="password" placeholder="Enter your password">
+                    <span class="icon"><i class="fas fa-lock"></i>
                 </div>
                 <button type="submit" class="sign-up-button">Sign Up</button>
-                <div class="already-have-account">
-                    <p>Already have an account? <a href="/Sign In">Sign In</a></p>
-                </div>
+               
             </form>
         </div>
     </div>
