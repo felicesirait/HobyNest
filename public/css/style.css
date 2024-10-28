@@ -1,4 +1,3 @@
-
 .heading {
     font-family: "Bungee", sans-serif;
     font-weight: 400;
@@ -58,4 +57,7 @@ p, h4, footer{
 .social_icon{
     font-size : 2rem;
     padding-left: 0;
+}
+.footer-no-margin {
+    margin-bottom: 0 !important;
 }

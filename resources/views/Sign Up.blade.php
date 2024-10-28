@@ -120,25 +120,45 @@
             <p>Create Your Account!</p>
             <img src="img/sign-up-image.png" alt="gambar Sign Up">
         </div>
+
+        <div>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+                        <div class="alert alert-danger">{{ $error }}</div>
+                        @endforeach
+                </div>
+            @endif
+
+            @if (session() -> has('error'))
+                <div class="alert alert-danger">{{ session('error') }}</div>
+            @endif
+
+            @if (session() -> has('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+        </div>
+
         <div class="right-section">
-            <form>
+            <form action="{{ route('signUp.post') }}" method="POST">
+                @csrf
                 <div class="already-have-account">
                     <p>Already have an account? <a href="/Sign In">Sign In</a></p>
                 </div>
 
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" id="username" placeholder="Enter your username">
+                    <input type="text" id="username" placeholder="Enter your username" name="name">
                     <span class="icon"><i class="fas fa-user"></i>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="Enter your email">
+                    <input type="email" id="email" placeholder="Enter your email" name="email">
                     <span class="icon"><i class="fas fa-envelope"></i>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Enter your password">
+                    <input type="password" id="password" placeholder="Enter your password" name="password">
                     <span class="icon"><i class="fas fa-lock"></i>
                 </div>
                 <button type="submit" class="sign-up-button">Sign Up</button>

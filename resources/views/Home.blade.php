@@ -39,19 +39,32 @@
     <nav class="bg-gray-800" x-data="{ isOpen: false }">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex h-22 items-center justify-between">
-        
+    
           <div class="flex items-center">
             <div class="flex-shrink-0">
               <img class="logo-size" src="img/logo.png" alt="Logo HobbyNest">
             </div>
           </div>
         
-          <div class="hidden md:flex ml-auto items-baseline space-x-4" id="nav-item">
+          <div class="hidden md:flex items-baseline space-x-5" id="nav-item">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="/" class="rounded-md px-3 py-2 text-sm font-medium text-white no-underline" aria-current="page">Home</a>
-            <a href="/Sign In" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white no-underline">Sign In</a>
-            <a href="/Sign Up" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white no-underline">Sign Up</a>
+            <a href="/Home" class="rounded-md px-3 py-2 text-sm font-medium text-white no-underline" aria-current="page">Home</a>
+            <a href="/Community" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white no-underline">Community</a>
           </div>
+
+          <form class="d-flex ml-auto" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          </form>
+
+            <!--Logo Bell bisa di klik-->
+            <a href="#notifications" role="button" aria-label="Notifications">
+              <ion-icon name="notifications" class="text-white px-3 py-2" style="font-size: 2rem;"></ion-icon>
+            </a>
+            
+            <!--Logo User -->
+            <a href="#logo" role="button" aria-label="User profile">
+              <ion-icon name="person" class="text-white px-3 py-2" style="font-size: 2rem;"></ion-icon>
+            </a>
         
           <div class="-mr-2 flex md:hidden">
             <!-- Mobile menu button -->
@@ -72,8 +85,8 @@
               </button>
             </div>
         
-          </div>
         </div>
+      </div>
         
         <!-- Mobile menu, show/hide based on menu state. -->
         <div x-show="isOpen" class="md:hidden" id="mobile-menu">
@@ -83,40 +96,50 @@
             <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white no-underline">Sign In</a>
             <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white no-underline">Sign Up</a>
           </div>
-        </div>
-      </nav>
+      </div>
+    </nav>
     
     <!-- HERO -->
-    <section class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 bg-white">
-      <div class="flex flex-col lg:flex-row items-center lg:items-stretch">
-        <!-- Text Section -->
-        <div class="lg:w-1/2 mb-6 lg:mb-0 flex items-center text-box">
-          <div>
-            <!-- Heading -->
-            <h1 class="heading text-5xl font-bold tracking-tight text-black mb-4">
-              <span id="hero-heading">Share</span> and <span id="hero-heading">Dive</span> Into The World of Your <span id="hero-heading">Hobbies</span>
-            </h1>
-            <!-- Text -->
-            <p class="text-xl">
-              Find excitement in our vibrant community. Join us to share your passion, create a harmonious world by building lasting relationships!
-            </p>
-          </div>
-        </div>
-
-        <!-- Image Section -->
-        <div class="lg:w-1/2 flex justify-end">
-          <img src="img/hero.png" class="w-full h-full object-cover" alt="hero picture" data-aos="fade-up" data-aos-delay="100">
-        </div>
+<section class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 bg-white">
+  <div class="flex flex-col lg:flex-row items-center lg:items-stretch">
+    <!-- Text Section -->
+    <div class="lg:w-1/2 mb-6 lg:mb-0 flex items-center text-box">
+      <div>
+        <!-- Heading -->
+        <h1 class="heading text-5xl font-bold tracking-tight text-black mb-4">
+          <span id="hero-heading">Share</span> and <span id="hero-heading">Dive</span> Into The World of Your <span id="hero-heading">Hobbies</span>
+        </h1>
+        <!-- Text -->
+        <p class="text-xl">
+          Find excitement in our vibrant community. Join us to share your passion, create a harmonious world by building lasting relationships!
+        </p>
       </div>
-    </section>
+    </div>
 
-    <!-- ABOUT -->
-    <section class="about bg-about">
-      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        <div class="flex flex-col lg:flex-row items-center lg:items-stretch">
-          <!-- Image Section -->
-          <div class="lg:w-1/2 flex justify-end">
-            <img src="img/about-us.png" class="w-full h-full object-cover" alt="About Us Picture" data-aos="fade-up" data-aos-delay="100">
+    <!-- Image Section -->
+    <div class="lg:w-1/2 flex justify-end">
+      <img src="img/hero.png" class="w-full h-full object-cover" alt="hero picture" data-aos="fade-up" data-aos-delay="100">
+    </div>
+  </div>
+  <!-- Button Join dan Create -->
+  <div class="flex flex-col justify-start mt-6 space-y-2">
+    <a href="/Community" class="btn btn-primary px-2 py-1 text-xs max-w-xs" style="background-color: #4379F2; border-color: #4379F2;">Join Community</a>
+    
+    <div class="flex w-full">
+        <span class="text-gray-500 text-xs px-[150px]">or</span>
+    </div>
+    
+    <a href="/create" class="btn btn-primary px-2 py-1 text-xs max-w-xs" style="background-color: #4379F2; border-color: #4379F2;">Create new One</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id= "about-us" class="about bg-about">
+  <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row items-center lg:items-stretch">
+      <!-- Image Section -->
+      <div class="lg:w-1/2 flex justify-end">
+        <img src="img/about-us.png" class="w-full h-full object-cover" alt="About Us Picture" data-aos="fade-up" data-aos-delay="100">
           </div>
 
           <div class="lg:w-1/2 mb-6 lg:mb-0 flex flex-col justify-center">
@@ -183,8 +206,8 @@
     <footer class="py-3 my-4 bg-gray-800">
       <ul class="nav justify-content-center mb-3">
         <li class="nav-item font-medium"><a href="#" class="nav-link px-2 text-white">Home</a></li>
-        <li class="nav-item font-medium"><a href="#" class="nav-link px-2 text-white">About</a></li>
-        <li class="nav-item font-medium"><a href="#" class="nav-link px-2 text-white">Features</a></li>
+        <li class="nav-item font-medium"><a href="#about-us" class="nav-link px-2 text-white">About</a></li>
+        <li class="nav-item font-medium"><a href="/Community" class="nav-link px-2 text-white">Community</a></li>
         <li class="nav-item font-medium"><a href="#" class="nav-link px-2 text-white">Help Center</a></li>
       </ul>
 

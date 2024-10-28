@@ -11,11 +11,15 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    protected $table = 'users';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
+
+    //apa yang diisi secara manual oleh user
     protected $fillable = [
         'name',
         'email',
@@ -27,6 +31,8 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    //kolom yanng disembunyikan saat model direalisasikan
     protected $hidden = [
         'password',
         'remember_token',
@@ -37,6 +43,8 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+
+     //atribut dikonversi saat ambil dari database
     protected function casts(): array
     {
         return [

@@ -121,22 +121,41 @@
             <p>Come join and explore HobbyNest</p>
             <img src="img/sign-in-image.png" alt="Gambar Sign In">
         </div>
+
+        <div>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+                        <div class="alert alert-danger">{{ $error }}</div>
+                        @endforeach
+                </div>
+            @endif
+
+            @if (session() -> has('error'))
+                <div class="alert alert-danger">{{ session('error') }}</div>
+            @endif
+
+            @if (session() -> has('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+        </div>
+        
         <div class="right-section">
-            <form>
+            <form action="{{ route('signIn.post') }}" method="POST">
+                @csrf
                 <div class="already-have-account">
-                    <p>Don't have an account? <a href="/Sign In">Sign Up</a></p>
+                    <p>Don't have an account? <a href="/Sign Up">Sign Up</a></p>
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="Enter your email"><span class="icon">
+                    <input type="email" id="email" placeholder="Enter your email" name="email"><span class="icon">
                     <i class="fas fa-envelope"></i>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Enter your password">
-                    <span class="icon"><i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="Enter your password" name="password"><span class="icon"><i class="fas fa-lock"></i>
                 </div>
 
                 <button type="submit" class="sign-up-button">Sign In</button>
