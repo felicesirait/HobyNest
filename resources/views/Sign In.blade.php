@@ -111,6 +111,14 @@
         .fontK{
             font-size: 10px;
         }
+
+        .checkbox-group{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
     </style>
 </head>
 
@@ -156,6 +164,12 @@
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" id="password" placeholder="Enter your password" name="password"><span class="icon"><i class="fas fa-lock"></i>
+                </div>
+
+                {{-- REMEMBER ME --}}
+                <div class="checkbox-group">
+                    <label for="remember">Remember Me</label>
+                    <input type="checkbox" id="remember" name="remember">
                 </div>
 
                 <button type="submit" class="sign-up-button">Sign In</button>

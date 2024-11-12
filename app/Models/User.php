@@ -14,42 +14,31 @@ class User extends Authenticatable
     protected $table = 'users';
 
     /**
-     * The attributes that are mass assignable.
+     * Atribut yang dapat diisi secara massal.
      *
      * @var array<int, string>
      */
-
-    //apa yang diisi secara manual oleh user
     protected $fillable = [
         'name',
         'email',
         'password',
+        'profile_picture',
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * Atribut yang harus disembunyikan untuk serialisasi.
      *
      * @var array<int, string>
      */
-
-    //kolom yanng disembunyikan saat model direalisasikan
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * Atribut yang harus dikonversi.
      *
-     * @return array<string, string>
+     * @var array<string, string>
      */
 
-     //atribut dikonversi saat ambil dari database
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
 }

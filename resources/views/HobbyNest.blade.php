@@ -34,6 +34,13 @@
 
 <body class="h-full">
 
+@if(Auth::check())
+  <script>
+    window.location.href = "{{ route('home') }}";
+  </script>
+   @else
+@endif
+
 <div class="min-h-full bg-white">
     <!-- NAVIGASI -->
     <nav class="bg-gray-800" x-data="{ isOpen: false }">

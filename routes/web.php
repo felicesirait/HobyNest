@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('HobbyNest');
@@ -27,6 +28,9 @@ Route::get('/forum', function () {
     return view('forum');
 });
 
+Route::get('/EditProfile', function () {
+    return view('EditProfile');
+});
 
 Route::get('/Sign In', [AuthManager::class, 'signIn'])->name('signIn');
 Route::post('/Sign In', [AuthManager::class, 'signInPost'])->name('signIn.post');

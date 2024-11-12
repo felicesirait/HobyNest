@@ -233,6 +233,7 @@
     <div class="profile-header">
         <img alt="Profile picture of user" height="150" src="https://storage.googleapis.com/a1aa/image/RUYIG2tPn4YDNlf2OBqdEYAphwGCkRGm0AjERY4sUS7LjiyJA.jpg" width="150"/>
         <h1>Alice</h1>
+
         <div class="tags" onclick="toggleTags()">Tags</div>
         <div class="tags-dropdown" id="tagsDropdown">
             <ul>
@@ -248,7 +249,9 @@
         <span>0 post</span>  <span>0 followers</span>  <span>0 following</span>
         <div>
             <button class="btn btn-primary">SHARE</button>
-            <button class="btn btn-primary">EDIT PROFILE</button>
+            {{-- <button href="/EditProfile" class="btn btn-primary">EDIT PROFILE</button> --}}
+            <a href="/EditProfile" class="btn btn-primary">EDIT PROFILE</a>
+
         </div>
     </div>
 

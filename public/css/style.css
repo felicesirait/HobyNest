@@ -28,6 +28,14 @@ p, h4, footer{
     font-style: normal;
 }
 
+.icon {
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+.icon:hover {
+    filter: drop-shadow(0 0 1px white);
+    transform: scale(1.2);
+}
+
 /* BAGIAN HERO */
 .text-box{
     padding-left: 25px;

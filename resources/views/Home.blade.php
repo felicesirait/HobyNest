@@ -34,6 +34,7 @@
 
 <body class="h-full">
 
+
 <div class="min-h-full bg-white">
     <!-- NAVIGASI -->
     <nav class="bg-gray-800" x-data="{ isOpen: false }">
@@ -62,8 +63,8 @@
             </a>
             
             <!--Logo User -->
-            <a href="#logo" role="button" aria-label="User profile">
-              <ion-icon name="person" class="text-white px-3 py-2" style="font-size: 2rem;"></ion-icon>
+            <a href="/Profile" role="button" aria-label="User profile">
+              <ion-icon name="person" class="text-white px-3 py-2 icon" style="font-size: 2rem;"></ion-icon>
             </a>
         
           <div class="-mr-2 flex md:hidden">

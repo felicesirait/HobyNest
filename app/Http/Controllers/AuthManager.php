@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cookie;
 
 class AuthManager extends Controller
 {
@@ -26,7 +27,12 @@ class AuthManager extends Controller
         ]);
 
         $credentials = $request->only('email', 'password');
-        if(Auth::attempt($credentials)){
+        $remember = $request->has('remember'); // Cek apakah checkbox "Remember Me" dicentang
+
+        if(Auth::attempt($credentials, $remember)){
+            if ($remember) {
+                Cookie::queue('remember_me', $request->email, 1); // Simpan cookie selama 1 menit
+            }
             return redirect()->intended(route('home'));
         }
 
@@ -56,6 +62,7 @@ class AuthManager extends Controller
     function signOut(){
         Session::flush();
         Auth::logout();
+        Cookie::queue(Cookie::forget('remember_me')); // Hapus cookie "remember_me"
         return redirect(route('signIn'));
     }
 }
