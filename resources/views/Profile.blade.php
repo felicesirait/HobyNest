@@ -229,7 +229,7 @@
     </nav>
 
 
-    <!-- PROFILE -->
+    <!-- PROFILE  -->
     <div class="profile-header">
         <img alt="Profile picture of user" height="150" src="https://storage.googleapis.com/a1aa/image/RUYIG2tPn4YDNlf2OBqdEYAphwGCkRGm0AjERY4sUS7LjiyJA.jpg" width="150"/>
         <h1>Alice</h1>

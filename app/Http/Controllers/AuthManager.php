@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Cookie;
 
 class AuthManager extends Controller
 {
-    function signIn(){
+    function signIn() {
         return view('Sign In');
     }
 

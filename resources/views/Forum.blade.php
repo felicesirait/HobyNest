@@ -318,7 +318,7 @@
                     </a>
                 </li> 
                 <div class="profile-dropdown">
-            <a href="#" onclick="toggleDropdown()">
+            <a href="#" onclick="toggleDropdown()" >
                 <i class="fas fa-user-circle fa-2x"></i>
             </a>
             <div id="dropdownMenu" class="dropdown-content">

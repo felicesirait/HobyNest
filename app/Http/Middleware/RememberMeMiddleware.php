@@ -12,7 +12,7 @@ class RememberMeMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::check() && $request->hasCookie('remember_me')) {
+        if (!Auth::check() && $request->hasCookie('remember_me'))  {
             $email = $request->cookie('remember_me');
             $user = User::where('email', $email)->first();
 

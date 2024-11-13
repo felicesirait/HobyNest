@@ -139,7 +139,7 @@
             @endif
         </div>
 
-        <div class="right-section">
+        <div class="right-section" >
             <form action="{{ route('signUp.post') }}" method="POST">
                 @csrf
                 <div class="already-have-account">

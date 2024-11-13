@@ -22,7 +22,7 @@ class Kernel extends HttpKernel
      *
      * @var array
      */
-    protected $middlewareGroups = [
+    protected $middlewareGroups =  [
         'web' => [
             // Middleware lainnya
             \App\Http\Middleware\RememberMeMiddleware::class,

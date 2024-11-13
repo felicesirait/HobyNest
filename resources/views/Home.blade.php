@@ -57,7 +57,7 @@
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           </form>
 
-            <!--Logo Bell bisa di klik-->
+            <!--Logo Bell bisa  di klik-->
             <a href="#notifications" role="button" aria-label="Notifications">
               <ion-icon name="notifications" class="text-white px-3 py-2" style="font-size: 2rem;"></ion-icon>
             </a>

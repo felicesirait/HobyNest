@@ -88,7 +88,7 @@
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name">
             </div>
-            <div class="input-group">
+            <div class="input-group" >
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email">
             </div>

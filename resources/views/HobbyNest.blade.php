@@ -41,7 +41,7 @@
    @else
 @endif
 
-<div class="min-h-full bg-white">
+<div class="min-h-full bg-white" >
     <!-- NAVIGASI -->
     <nav class="bg-gray-800" x-data="{ isOpen: false }">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

@@ -99,7 +99,6 @@
       </nav>
     
     </header>
-
                 <!-- Main Content -->
                 <main class="container mx-auto px-4 py-8">
                   <h1 class="text-3xl font-bold text-center mb-8">Find Your Passion</h1>

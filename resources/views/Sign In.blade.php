@@ -155,7 +155,7 @@
                     <p>Don't have an account? <a href="/Sign Up">Sign Up</a></p>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" >
                     <label for="email">Email</label>
                     <input type="email" id="email" placeholder="Enter your email" name="email"><span class="icon">
                     <i class="fas fa-envelope"></i>
