@@ -316,7 +316,7 @@
                         <i class="fas fa-bell"></i>
                         <span class="badge bg-danger">1</span>
                     </a>
-                </li>
+                </li> 
                 <div class="profile-dropdown">
             <a href="#" onclick="toggleDropdown()">
                 <i class="fas fa-user-circle fa-2x"></i>
