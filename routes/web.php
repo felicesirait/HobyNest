@@ -32,6 +32,14 @@ Route::get('/EditProfile', function () {
     return view('EditProfile');
 });
 
+Route::get('/Marketplace', function () {
+    return view('Marketplace');
+});
+
+Route::get('/DetailPesanan', function () {
+    return view('DetailPesanan');
+});
+
 Route::get('/Sign In', [AuthManager::class, 'signIn'])->name('signIn');
 Route::post('/Sign In', [AuthManager::class, 'signInPost'])->name('signIn.post');
 
