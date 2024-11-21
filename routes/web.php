@@ -40,6 +40,10 @@ Route::get('/DetailPesanan', function () {
     return view('DetailPesanan');
 });
 
+Route::get('/MetodePembayaran', function () {
+    return view('MetodePembayaran');
+});
+
 Route::get('/Sign In', [AuthManager::class, 'signIn'])->name('signIn');
 Route::post('/Sign In', [AuthManager::class, 'signInPost'])->name('signIn.post');
 
