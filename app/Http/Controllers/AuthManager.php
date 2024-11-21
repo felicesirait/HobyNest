@@ -33,9 +33,15 @@ class AuthManager extends Controller
             if ($remember) {
                 Cookie::queue('remember_me', $request->email, 1); // Simpan cookie selama 1 menit
             }
-            return redirect()->intended(route('home'));
-        }
 
+            // Periksa usertype dan arahkan ke halaman yang sesuai
+            $user = Auth::user();
+            if ($user->usertype == 'admin') {
+                return redirect()->route('admin');
+            } else {
+                return redirect()->route('home');
+            }
+        }
         return redirect(route('signIn'))->with('error', 'Sign In details are not valid');
     }
 
@@ -44,12 +50,14 @@ class AuthManager extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required'
+            'password' => 'required',
+            //'usertype' => 'required|in:user,admin', // Validasi usertype
         ]);
 
         $data['name'] = $request->name;
         $data['email'] = $request->email;
         $data['password'] = Hash::make($request->password); 
+        //$data['usertype'] = $request->usertype; // Simpan usertype
         $user = User::create($data);
 
         if(!$user){
@@ -59,10 +67,11 @@ class AuthManager extends Controller
         
     }
 
-    function signOut(){
+    function signOut()
+    {
         Session::flush();
         Auth::logout();
-        Cookie::queue(Cookie::forget('remember_me')); // Hapus cookie "remember_me"
+        Cookie::queue(Cookie::forget('remember_me')); //Hapus cookie "remember_me"
         return redirect(route('signIn'));
     }
 }

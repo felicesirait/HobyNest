@@ -8,6 +8,10 @@ Route::get('/', function () {
     return view('HobbyNest');
 });
 
+Route::get('/admin', function () {
+    return view('Admin');
+});
+
 Route::get('/Home', function () {
     return view('Home');
 })->name('home');
@@ -16,9 +20,16 @@ Route::get('/Community', function () {
     return view('Community');
 });
 
-Route::get('/Profile', function () {
-    return view('Profile');
-});
+
+// Route::get('/Profile', function () {
+//     return view('Profile');
+// });
+
+Route::get('/Profile', [ProfileController::class, 'show'])->name('profile.show');
+
+Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
 
 Route::get('/create', function () {
     return view('create');
@@ -28,9 +39,9 @@ Route::get('/forum', function () {
     return view('forum');
 });
 
-Route::get('/EditProfile', function () {
-    return view('EditProfile');
-});
+// Route::get('/EditProfile', function () {
+//     return view('EditProfile');
+// });
 
 Route::get('/Marketplace', function () {
     return view('Marketplace');
@@ -51,3 +62,9 @@ Route::get('/Sign Up', [AuthManager::class, 'signUp']) ->name('signUp');
 Route::post('/Sign Up', [AuthManager::class, 'signUpPost'])->name('signUp.post');
 
 Route::get('/Sign Out', [AuthManager::class, 'signOut'])->name('signOut');
+
+Route::post('/logout', [AuthManager::class, 'signOut'])->name('logout');
+
+Route::get('/admin', function () {
+    return view('Admin');
+})->name('admin');

@@ -194,6 +194,37 @@
             <a href="#logo" role="button" aria-label="User profile">
               <ion-icon name="person" class="text-white px-3 py-2" style="font-size: 2rem;"></ion-icon>
             </a>
+
+            <!-- Dropdown dengan tombol panah -->
+            <div class="relative" x-data="{ open: false }">
+                <!-- Tombol dengan ikon panah -->
+                <button @click="open = !open" class="flex items-center text-white focus:outline-none">
+                    <ion-icon :class="open ? 'rotate-180' : 'rotate-0'" name="chevron-down-outline" class="transition-transform duration-200" style="font-size: 1.5rem;"></ion-icon>
+                </button>
+  
+                <!-- Dropdown menu -->
+                <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-md z-20">
+                  <div class="p-3 border-b">
+                    <p class="font-medium">{{ Auth::user()->name }}</p>
+                    <p class="text-sm text-gray-600">{{ Auth::user()->email }}</p>
+                  </div>
+                  
+                    <ul>
+                        <li>
+                            <a href="/settings" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Setting</a>
+                        </li>
+                        <li>
+                            <a href="/help" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Help Center</a>
+                        </li>
+                        <li>
+                            <form action="{{ route('logout') }}" method="POST" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                @csrf
+                                <button type="submit" class="w-full text-left">Log Out</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+              </div>
             
             <div class="-mr-2 flex md:hidden">
             <!-- Mobile menu button -->
@@ -231,8 +262,11 @@
 
     <!-- PROFILE  -->
     <div class="profile-header">
-        <img alt="Profile picture of user" height="150" src="https://storage.googleapis.com/a1aa/image/RUYIG2tPn4YDNlf2OBqdEYAphwGCkRGm0AjERY4sUS7LjiyJA.jpg" width="150"/>
-        <h1>Alice</h1>
+        {{-- <img alt="Profile picture of user" height="150" src="https://storage.googleapis.com/a1aa/image/RUYIG2tPn4YDNlf2OBqdEYAphwGCkRGm0AjERY4sUS7LjiyJA.jpg" width="150"/>
+        <h1>Alice</h1> --}}
+
+        <img alt="Profile picture of user" height="150" src="{{ Auth::user()->profile_picture ? asset('storage/' . Auth::user()->profile_picture) : 'https://via.placeholder.com/150' }}" width="150"/>
+        <h1>{{ Auth::user()->name }}</h1>
 
         <div class="tags" onclick="toggleTags()">Tags</div>
         <div class="tags-dropdown" id="tagsDropdown">
@@ -245,15 +279,16 @@
         </div>
     </div>
 
-    <div class="profile-stats">
-        <span>0 post</span>  <span>0 followers</span>  <span>0 following</span>
-        <div>
-            <button class="btn btn-primary">SHARE</button>
+        <div class="profile-stats">
+            <span>0 post</span>  <span>0 followers</span>  <span>0 following</span>
+            <div>
+                <button class="btn btn-primary">SHARE</button>
             {{-- <button href="/EditProfile" class="btn btn-primary">EDIT PROFILE</button> --}}
-            <a href="/EditProfile" class="btn btn-primary">EDIT PROFILE</a>
-
+            {{-- <a href="/EditProfile" class="btn btn-primary">EDIT PROFILE</a> --}}
+            <a href="{{ route('profile.edit') }}" class="btn btn-primary">EDIT PROFILE</a>
         </div>
     </div>
+</div>
 
     <div class="content">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -284,10 +319,19 @@
 <script crossorigin="anonymous" integrity="sha384-oBqDVmMz4fnFO9gybBogGzA6Yk4O9COw1L8/kZTQ5mF0EGp7FUw6p6C0w5z6p2gF" src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script crossorigin="anonymous" integrity="sha384-pprn3073KE6tl6/5oAlt5A6arUpq1T9/ScQsAP7hUibX39j6WrCAf5gqZ9CWNH3+" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 <script>
+    // function toggleTags() {
+    //     const tagsDropdown = document.getElementById('tagsDropdown');
+    //     tagsDropdown.classList.toggle('show'); // Toggles visibility by adding/removing the 'show' class
+    // }
+
     function toggleTags() {
-        const tagsDropdown = document.getElementById('tagsDropdown');
-        tagsDropdown.classList.toggle('show'); // Toggles visibility by adding/removing the 'show' class
-    }
+            var tagsDropdown = document.getElementById('tagsDropdown');
+            if (tagsDropdown.style.display === 'none') {
+                tagsDropdown.style.display = 'block';
+            } else {
+                tagsDropdown.style.display = 'none';
+            }
+        }
 
     function toggleMenu() {
         const mobileMenu = document.getElementById('mobileMenu');

@@ -66,6 +66,39 @@
             <a href="/Profile" role="button" aria-label="User profile">
               <ion-icon name="person" class="text-white px-3 py-2 icon" style="font-size: 2rem;"></ion-icon>
             </a>
+
+
+            <!-- Dropdown dengan tombol panah -->
+            <div class="relative" x-data="{ open: false }">
+              <!-- Tombol dengan ikon panah -->
+              <button @click="open = !open" class="flex items-center text-white focus:outline-none">
+                  <ion-icon :class="open ? 'rotate-180' : 'rotate-0'" name="chevron-down-outline" class="transition-transform duration-200" style="font-size: 1.5rem;"></ion-icon>
+              </button>
+
+              <!-- Dropdown menu -->
+              <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-md z-20">
+                <div class="p-3 border-b">
+                  <p class="font-medium">{{ Auth::user()->name }}</p>
+                  <p class="text-sm text-gray-600">{{ Auth::user()->email }}</p>
+                </div>
+                
+                  <ul>
+                      <li>
+                          <a href="/settings" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Setting</a>
+                      </li>
+                      <li>
+                          <a href="/help" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Help Center</a>
+                      </li>
+                      <li>
+                          <form action="{{ route('logout') }}" method="POST" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                              @csrf
+                              <button type="submit" class="w-full text-left">Log Out</button>
+                          </form>
+                      </li>
+                  </ul>
+              </div>
+            </div>
+
         
           <div class="-mr-2 flex md:hidden">
             <!-- Mobile menu button -->

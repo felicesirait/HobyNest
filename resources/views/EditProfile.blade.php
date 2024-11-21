@@ -70,40 +70,57 @@
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
+            margin-top: 20px;
         }
+        
+        #profile_picture {
+            display: none;
+        }
+
     </style>
 </head>
 
 <body>
     <div class="container">
         <h2>Edit Profile</h2>
-        <div>
-            <!-- Placeholder for profile picture -->
-            <img alt="Profile picture of user" height="150" src="https://storage.googleapis.com/a1aa/image/RUYIG2tPn4YDNlf2OBqdEYAphwGCkRGm0AjERY4sUS7LjiyJA.jpg" width="150"/>
+        <div class="profile-pic">
+            <img id="profile-pic-preview" alt="Profile picture of user" height="150" src="{{ $user->profile_picture ? asset('storage/' . $user->profile_picture) : 'https://via.placeholder.com/150' }}" width="150"/>
         </div>
-        <button class="btn-change-photo">Change Photo</button>
+        <button class="btn-change-photo" onclick="document.getElementById('profile_picture').click()">Change Photo</button>
 
-        <form>
+        <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            <input type="file" id="profile_picture" name="profile_picture" onchange="previewProfilePicture(event)">
             <div class="input-group">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name">
-            </div>
-            <div class="input-group" >
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email">
+                <input type="text" id="name" name="name" value="{{ $user->name }}" required>
             </div>
             <div class="input-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="{{ $user->email }}" required>
             </div>
             <div class="input-group">
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password">
             </div>
+            <div class="input-group">
+                <label for="password_confirmation">Confirm Password:</label>
+                <input type="password" id="password_confirmation" name="password_confirmation">
+            </div>
             <button type="submit" class="btn-save">Save</button>
         </form>
-
     </div>
-</body>
 
+    <script>
+        function previewProfilePicture(event) {
+            const reader = new FileReader();
+            reader.onload = function(){
+                const output = document.getElementById('profile-pic-preview');
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+</body>
 </html>
