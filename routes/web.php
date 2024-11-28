@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CommunityController;
 
 Route::get('/', function () {
     return view('HobbyNest');
@@ -68,3 +69,17 @@ Route::post('/logout', [AuthManager::class, 'signOut'])->name('logout');
 Route::get('/admin', function () {
     return view('Admin');
 })->name('admin');
+
+// Rute untuk profil
+Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+// Rute untuk komunitas
+Route::get('/community/create', [CommunityController::class, 'create'])->name('community.create');
+Route::post('/community', [CommunityController::class, 'store'])->name('community.store');
+Route::get('/community/{id}', [CommunityController::class, 'show'])->name('community.show');
+Route::get('/community', [CommunityController::class, 'index'])->name('community.index');
+
+// Rute untuk forum komunitas
+Route::get('/community/{id}/forum', [CommunityController::class, 'forum'])->name('community.forum');

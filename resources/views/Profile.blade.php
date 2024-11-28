@@ -267,7 +267,7 @@
 
         <img alt="Profile picture of user" height="150" src="{{ Auth::user()->profile_picture ? asset('storage/' . Auth::user()->profile_picture) : 'https://via.placeholder.com/150' }}" width="150"/>
         <h1>{{ Auth::user()->name }}</h1>
-
+        
         <div class="tags" onclick="toggleTags()">Tags</div>
         <div class="tags-dropdown" id="tagsDropdown">
             <ul>

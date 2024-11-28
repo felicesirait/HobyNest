@@ -4,111 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin-top: 40px;
-            margin-bottom: 40px;
-        }
-        .container {
-            width: 400px;
-            background-color: white;
-            padding: 20px;
-            padding-right: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        .container h2 {
-            margin-bottom: 20px;
-        }
-        img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background-color: #ddd;
-            margin: 0 auto 15px;
-        }
-        .btn-change-photo {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 8px 16px;
-            background-color: #4a90e2;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .input-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .input-group input {
-            width: 100%;
-            padding: 10px;
-            padding-right: 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #f2f2f2;
-        }
-        .btn-save {
-            width: 100%;
-            padding: 10px;
-            background-color: #4a90e2;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        
-        #profile_picture {
-            display: none;
-        }
-
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body>
-    <div class="container">
-        <h2>Edit Profile</h2>
-        <div class="profile-pic">
-            <img id="profile-pic-preview" alt="Profile picture of user" height="150" src="{{ $user->profile_picture ? asset('storage/' . $user->profile_picture) : 'https://via.placeholder.com/150' }}" width="150"/>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold mb-6 text-center">Edit Profile</h2>
+        <div class="flex justify-center mb-6">
+        <img id="profile-pic-preview" class="w-32 h-32 rounded-full bg-gray-300" alt="Profile picture of user" src="{{ $user->profile_picture ? asset('storage/' . $user->profile_picture) : 'https://via.placeholder.com/150' }}" />
         </div>
-        <button class="btn-change-photo" onclick="document.getElementById('profile_picture').click()">Change Photo</button>
+        <button class="bg-blue-500 text-white py-2 px-4 rounded mb-6 w-full" onclick="document.getElementById('profile_picture').click()">Change Photo</button>
 
         <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <input type="file" id="profile_picture" name="profile_picture" onchange="previewProfilePicture(event)">
-            <div class="input-group">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" value="{{ $user->name }}" required>
+            <input type="file" id="profile_picture" name="profile_picture" class="hidden" onchange="previewProfilePicture(event)">
+            <div class="mb-4">
+                <label for="name" class="block text-gray-700">Name:</label>
+                <input type="text" id="name" name="name" value="{{ $user->name }}" required class="w-full px-3 py-2 border border-gray-300 rounded mt-1">
             </div>
-            <div class="input-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="{{ $user->email }}" required>
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700">Email:</label>
+                <input type="email" id="email" name="email" value="{{ $user->email }}" required class="w-full px-3 py-2 border border-gray-300 rounded mt-1">
             </div>
-            <div class="input-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password">
+            <div class="mb-4">
+                <label for="password" class="block text-gray-700">Password:</label>
+                <input type="password" id="password" name="password" class="w-full px-3 py-2 border border-gray-300 rounded mt-1">
             </div>
-            <div class="input-group">
-                <label for="password_confirmation">Confirm Password:</label>
-                <input type="password" id="password_confirmation" name="password_confirmation">
+            <div class="mb-6">
+                <label for="password_confirmation" class="block text-gray-700">Confirm Password:</label>
+                <input type="password" id="password_confirmation" name="password_confirmation" required class="w-full px-3 py-2 border border-gray-300 rounded mt-1">
             </div>
-            <button type="submit" class="btn-save">Save</button>
+            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded w-full">Save</button>
         </form>
     </div>
 

@@ -131,14 +131,15 @@
 
     <main class="container mx-auto mt-8 p-6 bg-gray-800 rounded-lg">
         <h1 class="text-2xl font-bold mb-6">Enter Community Name</h1>
-        <form>
+        <form action="{{ route('community.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
             <div class="mb-4">
-                <input type="text" class="w-full p-2 rounded bg-white text-black" placeholder="Community Name">
+                <input type="text" name="name" class="w-full p-2 rounded bg-white text-black" placeholder="Community Name" required>
             </div>
             <div class="mb-4">
-            <label class="block mb-2">Choose Tags</label>
+                <label class="block mb-2">Choose Tags</label>
                 <div class="relative">
-                    <select class="w-full p-2 rounded bg-white text-gray-500 appearance-none">
+                    <select name="tags" class="w-full p-2 rounded bg-white text-gray-500 appearance-none" required>
                         <option class="text-gray-500" value="" disabled selected>Select tags...</option>
                         <option class="text-black">Sport</option>
                         <option class="text-black">Travel</option>
@@ -153,26 +154,20 @@
                     </div>
                 </div>
             </div>
-                        <div class="mb-4">
+            <div class="mb-4">
                 <label class="block mb-2">Image</label>
                 <div class="flex items-center">
                     <button type="button" class="bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded border border-gray-700" onclick="document.getElementById('fileInput').click();">
                         Choose File
                     </button>
-                    <input type="file" id="fileInput" class="hidden" onchange="updateFileName(this)">
+                    <input type="file" id="fileInput" name="image" class="hidden" onchange="updateFileName(this)">
                     <span id="fileName" class="ml-3">No File Chosen</span>
                 </div>
             </div>
-            
-            <script>
-                function updateFileName(input) {
-                    const fileName = input.files.length > 0 ? input.files[0].name : 'No File Chosen';
-                    document.getElementById('fileName').textContent = fileName;
-                }
-            </script>
             <div class="mb-4">
                 <label class="block mb-2">Enter Community Description</label>
-                <textarea class="w-full p-2 rounded bg-white text-black" rows="6"></textarea>            </div>
+                <textarea name="description" class="w-full p-2 rounded bg-white text-black" rows="6" required></textarea>
+            </div>
             <div class="text-right">
                 <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
                     Publish
@@ -181,29 +176,33 @@
         </form>
     </main>
 
-    
-<!-- FOOTER -->
-<footer class="py-3 my-4 bg-gray-800 footer-no-margin">
-    <ul class="nav justify-content-center mb-3">
-        <li class="nav-item font-medium"><a href="#" class="nav-link px-2 text-white">Home</a></li>
-        <li class="nav-item font-medium"><a href="#about-us" class="nav-link px-2 text-white">About</a></li>
-        <li class="nav-item font-medium"><a href="/Community" class="nav-link px-2 text-white">Community</a></li>
-        <li class="nav-item font-medium"><a href="#" class="nav-link px-2 text-white">Help Center</a></li>
-    </ul>
+    <!-- FOOTER -->
+    <footer class="py-3 my-4 bg-gray-800 footer-no-margin">
+        <ul class="nav justify-content-center mb-3">
+            <li class="nav-item font-medium"><a href="#" class="nav-link px-2 text-white">Home</a></li>
+            <li class="nav-item font-medium"><a href="#about-us" class="nav-link px-2 text-white">About</a></li>
+            <li class="nav-item font-medium"><a href="/Community" class="nav-link px-2 text-white">Community</a></li>
+            <li class="nav-item font-medium"><a href="#" class="nav-link px-2 text-white">Help Center</a></li>
+        </ul>
 
-    <ul class="social_icon border-bottom flex justify-center space-x-4 pb-3 mb-3">
-        <li><a href=""><ion-icon name="logo-twitter" class="text-white"></ion-icon></a></li>
-        <li><a href="h"><ion-icon name="logo-instagram" class="text-white"></ion-icon></a></li>
-        <li><a href=""><ion-icon name="logo-facebook" class="text-white"></ion-icon></a></li>
-    </ul>
+        <ul class="social_icon border-bottom flex justify-center space-x-4 pb-3 mb-3">
+            <li><a href=""><ion-icon name="logo-twitter" class="text-white"></ion-icon></a></li>
+            <li><a href="h"><ion-icon name="logo-instagram" class="text-white"></ion-icon></a></li>
+            <li><a href=""><ion-icon name="logo-facebook" class="text-white"></ion-icon></a></li>
+        </ul>
 
-    <p class="text-center text-white font-medium">Made in ❤️ HobbyNest@2024</p>
-</footer>
+        <p class="text-center text-white font-medium">Made in ❤️ HobbyNest@2024</p>
+    </footer>
 
+    <script>
+        function updateFileName(input) {
+            const fileName = input.files.length > 0 ? input.files[0].name : 'No File Chosen';
+            document.getElementById('fileName').textContent = fileName;
+        }
+    </script>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

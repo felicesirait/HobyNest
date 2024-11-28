@@ -28,7 +28,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
     <title>HobbyNest</title>
-    
 </head>
 <body>
     <!-- Header -->
@@ -131,58 +130,27 @@
       </nav>
     
     </header>
-                <!-- Main Content -->
-                <main class="container mx-auto px-4 py-8">
-                  <h1 class="text-3xl font-bold text-center mb-8">Find Your Passion</h1>
-                  <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                      <!-- Row 1: Two boxes -->
-                      <a href="/soccer" class="card bg-white shadow-2xl rounded-full overflow-hidden block">
-                          <img src="img/soccer.jpg" alt="Soccer Mania" class="w-full h-48 object-cover">
-                          <div class="p-4">
-                              <h2 class="text-xl font-semibold">SoccerMania!</h2>
-                              <span class="text-gray-600 bg-white bg-opacity-10 px-1 py-0.5 text-sm rounded">Sport</span>
-                          </div>
-                      </a>
-                      <a href="/adventuria" class="card bg-white shadow-lg rounded-lg overflow-hidden block">
-                          <img src="img/adventuria.jpg" alt="Adventuriaa" class="w-full h-48 object-cover">
-                          <div class="p-4">
-                              <h2 class="text-xl font-semibold">Adventuriaa!</h2>
-                              <span class="text-gray-600">Travel</span>
-                          </div>
-                      </a>
-                  </section>
-                  <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
-                      <!-- Row 2: Four boxes -->
-                      <a href="/knit-krafters" class="card bg-white shadow-lg rounded-lg overflow-hidden block">
-                          <img src="img/knit.jpg" alt="Knit Krafters" class="w-full h-48 object-cover">
-                          <div class="p-4">
-                              <h2 class="text-xl font-semibold">Knit Krafters</h2>
-                              <span class="text-gray-600">Art</span>
-                          </div>
-                      </a>
-                      <a href="/hello-world" class="card bg-white shadow-lg rounded-lg overflow-hidden block">
-                          <img src="img/software.jpg" alt="Hello World!" class="w-full h-48 object-cover">
-                          <div class="p-4">
-                              <h2 class="text-xl font-semibold">HelloWorld!</h2>
-                              <span class="text-gray-600">Software</span>
-                          </div>
-                      </a>
-                      <a href="/foodie-zen" class="card bg-white shadow-lg rounded-lg overflow-hidden block">
-                          <img src="img/kuliner.jpg" alt="Foodie Zen" class="w-full h-48 object-cover">
-                          <div class="p-4">
-                              <h2 class="text-xl font-semibold">FoodieZen</h2>
-                              <span class="text-gray-600">Culinary</span>
-                          </div>
-                      </a>
-                      <a href="/tuner-brozz" class="card bg-white shadow-lg rounded-lg overflow-hidden block">
-                          <img src="img/carzz.jpg" alt="Tuner Brozz" class="w-full h-48 object-cover">
-                          <div class="p-4">
-                              <h2 class="text-xl font-semibold">Tuner Brozz</h2>
-                              <span class="text-gray-600">Automotive</span>
-                          </div>
-                      </a>
-                  </section>
-              </main>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-center mb-8">Find Your Passion</h1>
+        @if(session('success'))
+            <div class="bg-green-500 text-white p-4 rounded mb-4">
+                {{ session('success') }}
+            </div>
+        @endif
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            @foreach($communities as $community)
+                <a href="{{ route('community.forum', $community->id) }}" class="bg-white p-6 rounded-lg shadow-lg block">
+                    <h2 class="text-xl font-bold mb-2">{{ $community->name }}</h2>
+                    <p class="text-gray-700 mb-4">{{ $community->description }}</p>
+                    @if($community->image)
+                        <img src="{{ asset('storage/' . $community->image) }}" alt="{{ $community->name }}" class="w-full h-48 object-cover rounded-lg mb-4">
+                    @endif
+                    <p class="text-gray-500">Tags: {{ $community->tags }}</p>
+                </a>
+            @endforeach
+        </section>
+    </main>
     
     <!-- FOOTER -->
     <footer class="py-3 my-4 bg-gray-800">
@@ -197,5 +165,5 @@
     
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    </body>
-    </html>
+</body>
+</html>
