@@ -17,6 +17,12 @@ Route::get('/Home', function () {
     return view('Home');
 })->name('home');
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin', function () {
+        return view('Admin');
+    })->name('admin');
+});
+
 Route::get('/Community', function () {
     return view('Community');
 });
@@ -66,9 +72,9 @@ Route::get('/Sign Out', [AuthManager::class, 'signOut'])->name('signOut');
 
 Route::post('/logout', [AuthManager::class, 'signOut'])->name('logout');
 
-Route::get('/admin', function () {
-    return view('Admin');
-})->name('admin');
+// Route::get('/admin', function () {
+//     return view('Admin');
+// })->name('admin');
 
 // Rute untuk profil
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
