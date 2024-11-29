@@ -48,7 +48,7 @@
           <div class="hidden md:flex items-baseline space-x-5" id="nav-item">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <a href="Home" class="rounded-md px-3 py-2 text-sm font-medium text-white no-underline" aria-current="page">Home</a>
-            <a href="/Community" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white no-underline">Community</a>
+            <a href="/community" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white no-underline">Community</a>
           </div>
 
           <form class="d-flex ml-auto" role="search">
@@ -60,7 +60,7 @@
   <ion-icon name="notifications" class="text-white px-3 py-2" style="font-size: 2rem;"></ion-icon>
 </a>
       <!--Logo User -->
-      <a href="#logo" role="button" aria-label="User profile">
+      <a href="/Profile" role="button" aria-label="User profile">
   <ion-icon name="person" class="text-white px-3 py-2" style="font-size: 2rem;"></ion-icon>
 </a>
 
@@ -160,7 +160,7 @@
         <li><a href=""><ion-icon name="logo-facebook" class="text-white"></ion-icon></a></li>
       </ul>
     
-      <p class="text-center text-white font-medium">Made in ❤️ HobbyNest@2024 </p>
+      <p class="text-center text-white font-medium">Made in ❤ HobbyNest@2024 </p>
     </footer>
     
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
