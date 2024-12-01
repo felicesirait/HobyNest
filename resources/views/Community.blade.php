@@ -41,14 +41,14 @@
         
           <div class="flex items-center">
             <div class="flex-shrink-0">
-              <img class="logo-size" src="img/logo.png" alt="Logo HobbyNest">
+              <img class="logo-size" src="{{ asset('img/logo.png') }}" alt="Logo HobbyNest">
             </div>
           </div>
         
           <div class="hidden md:flex items-baseline space-x-5" id="nav-item">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="Home" class="rounded-md px-3 py-2 text-sm font-medium text-white no-underline" aria-current="page">Home</a>
-            <a href="/community" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white no-underline">Community</a>
+            <a href="/Home" class="rounded-md px-3 py-2 text-sm font-medium text-white no-underline" aria-current="page">Home</a>
+            <a href="/api/community" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white no-underline">Community</a>
           </div>
 
           <form class="d-flex ml-auto" role="search">
@@ -75,8 +75,10 @@
               <!-- Dropdown menu -->
               <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-md z-20">
                 <div class="p-3 border-b">
-                  <p class="font-medium">{{ Auth::user()->name }}</p>
-                  <p class="text-sm text-gray-600">{{ Auth::user()->email }}</p>
+                  @if(Auth::check())
+                      <p class="font-medium">{{ Auth::user()->name }}</p>
+                      <p class="text-sm text-gray-600">{{ Auth::user()->email }}</p>
+                  @endif
                 </div>
                 
                   <ul>
@@ -139,7 +141,7 @@
             </div>
         @endif
         <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            @foreach($communities as $community)
+            @foreach($community as $community)
                 <a href="{{ route('community.forum', $community->id) }}" class="bg-white p-6 rounded-lg shadow-lg block">
                     <h2 class="text-xl font-bold mb-2">{{ $community->name }}</h2>
                     <p class="text-gray-700 mb-4">{{ $community->description }}</p>

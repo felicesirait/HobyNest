@@ -32,8 +32,12 @@
                 </a>
                 <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-20">
                     <div class="p-3 border-b">
-                        <p class="font-medium">{{ Auth::user()->name }}</p>
-                        <p class="text-sm text-gray-600">{{ Auth::user()->email }}</p>
+                        @if(Auth::check())
+                            <p class="font-medium">{{ Auth::user()->name }}</p>
+                            <p class="text-sm text-gray-600">{{ Auth::user()->email }}</p>
+                        @else
+                            <p class="font-medium">Guest</p>
+                        @endif
                     </div>
                     <ul>
                         <li><a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" href="#">Setting</a></li>

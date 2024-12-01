@@ -7,14 +7,19 @@ use App\Models\Community;
 
 class CommunityController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         // Mengambil semua komunitas dari database
-        $communities = Community::all();
+        $community = Community::all();
 
         // Mengirimkan data komunitas ke view
-        return view('Community', compact('communities'));
+        if ($request->wantsJson()) {
+            return response()->json($community);
+        } else {
+            return view('Community', compact('community'))->with('community', $community);
+        }
     }
+    // Mengirimkan data komunitas sebagai JSON jika diminta
 
     public function create()
     {
@@ -42,13 +47,22 @@ class CommunityController extends Controller
 
         $community->save();
 
-        return redirect()->route('community.index')->with('success', 'Community created successfully.');
+        if ($request->wantsJson()) {
+            return response()->json($community);
+        } else {
+            return redirect()->route('community.index')->with('success', 'Community created successfully.');
+        }
     }
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $community = Community::findOrFail($id);
-        return view('Community', compact('community'));
+
+        if ($request->wantsJson()) {
+            return response()->json($community);
+        } else {
+            return view('Community', compact('community'));
+        }
     }
 
     public function forum($id)
