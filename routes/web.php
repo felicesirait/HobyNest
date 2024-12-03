@@ -42,8 +42,12 @@ Route::get('/create', function () {
     return view('create');
 });
 
-Route::get('/forum', function () {
-    return view('forum');
+Route::get('/Forum', function () {
+    return view('Forum');
+});
+
+Route::get('/Disscussion', function () {
+    return view('Disscussion');
 });
 
 // Route::get('/EditProfile', function () {
