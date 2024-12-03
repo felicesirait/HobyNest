@@ -24,7 +24,7 @@
         }
         .container {
             display: flex;
-            width: 900px;
+        width: 900px;
             height: 550px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
             background-color: #fff;
