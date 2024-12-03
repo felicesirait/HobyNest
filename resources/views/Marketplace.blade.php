@@ -1,265 +1,207 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="h-full bg-gray-100">
 <head>
-    <title>Marketplace</title>
-    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #F5F5F5;
-        }
-        .navbar {
-            background-color: #0A4650;
-        }
-        .navbar-brand {
-            font-weight: bold;
-            color: #ffffff;
-        }
-        .navbar-nav .nav-link, .profile-dropdown a {
-            color: #ffffff;
-        }
-        .logo-size {
-        width: 80px; 
-        height: auto; 
-        }
-        .sidebar {
-            background-color: #F5F5F5;
-            padding: 20px;
-            height: 100vh;
-            border-right: 1px solid #ddd;
-        }
-        .sidebar a {
-            display: block;
-            color: black;
-            padding: 10px 0;
-            text-decoration: none;
-            font-size: 16px;
-        }
-        .sidebar a.active {
-            background-color: #D3D3D3;
-            border-radius: 5px;
-        }
-        .submenu {
-        display: none;
-        padding-left: 20px;
-        }
-        .content {
-            padding: 20px;
-        }
-        .content h1 {
-            font-size: 2em;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        .search-bar {
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-        }
-        .category-tags {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        .category-tags select {
-            padding: 5px 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-        }
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-        .product-item {
-            text-align: center;
-            background-color: #ffffff;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .product-item img {
-            width: 100%;
-            border-radius: 10px;
-        }
-        .product-item h3 {
-            font-size: 16px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        .product-item p {
-            font-size: 14px;
-            color: #666;
-        }
-        .footer {
-            margin-top: 40px;
-            text-align: center;
-            color: #666;
-            font-size: 14px;
-        }
-        .footer a {
-            color: #666;
-            margin: 0 10px;
-            font-size: 20px;
-        }
-        .profile-dropdown {
-            position: relative;
-        }
-        .profile-dropdown a {
-            color: white;
-        }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 40px;
-            right: 0;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 15px;
-            border-radius: 8px;
-            width: 200px;
-        }
-        .dropdown-content p {
-            font-weight: bold;
-            margin: 0;
-        }
-        .dropdown-content small {
-            color: gray;
-        }
-        .dropdown-content a {
-            display: block;
-            padding: 8px 0;
-            text-decoration: none;
-            color: black;
-            font-size: 14px;
-        }
-        .dropdown-content a:hover {
-            background-color: #f0f0f0;
-        }
-        .show {
-            display: block;
-        }
-        
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- TAILWIND -->
+    @vite('resources/css/app.css')
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+      rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />    
+
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+
+    <title>HobbyNest</title>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-        <img class="logo-size" src="img/logo.png" alt="Logo HobbyNest">
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Community</a>
-                    </li>
-                </ul>
-                <form class="d-flex" role="search">
-                    <input aria-label="Search" class="form-control me-2" placeholder="Search" type="search"/>
-                    <button class="btn btn-outline-light" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </form>
-                <ul class="navbar-nav ms-3">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
-                    </li>
-                    <div class="profile-dropdown">
-                        <a href="#" onclick="toggleDropdown()"><i class="fas fa-user-circle fa-2x"></i></a>
-                        <div id="dropdownMenu" class="dropdown-content">
-                            <p>Currently in</p>
-                            <p><i class="fas fa-user"></i> Alice</p>
-                            <small>alice@gmail.com</small>
-                            <hr>
-                            <a href="#">Setting</a>
-                            <a href="#">Help Center</a>
-                            <a href="#">Log Out</a>
-                        </div>
+
+<body class="h-full">
+<div class="min-h-full bg-white">
+    <!-- NAVIGASI -->
+    <nav class="bg-gray-800" x-data="{ isOpen: false }">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-22 items-center justify-between">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <img class="logo-size" src="img/logo.png" alt="Logo HobbyNest">
                     </div>
-                </ul>
+                </div>
+
+                <div class="hidden md:flex items-baseline space-x-5" id="nav-item">
+                    <a href="/Home" class="rounded-md px-3 py-2 text-sm font-medium text-white no-underline">Home</a>
+                    <a href="/community" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white no-underline">Community</a>
+                </div>
+
+                <form class="d-flex ml-auto" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                </form>
+
+                <a href="#notifications" role="button" aria-label="Notifications">
+                    <ion-icon name="notifications" class="text-white px-3 py-2" style="font-size: 2rem;"></ion-icon>
+                </a>
+
+                <a href="/Profile" role="button" aria-label="User profile">
+                    <ion-icon name="person" class="text-white px-3 py-2 icon" style="font-size: 2rem;"></ion-icon>
+                </a>
+
+                <div class="relative" x-data="{ open: false }">
+                    <button @click="open = !open" class="flex items-center text-white focus:outline-none">
+                        <ion-icon :class="open ? 'rotate-180' : 'rotate-0'" name="chevron-down-outline" class="transition-transform duration-200" style="font-size: 1.5rem;"></ion-icon>
+                    </button>
+
+                    <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-md z-20">
+                        <div class="p-3 border-b">
+                            <p class="font-medium">{{ Auth::user()->name }}</p>
+                            <p class="text-sm text-gray-600">{{ Auth::user()->email }}</p>
+                        </div>
+                        <ul>
+                            <li><a href="/settings" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Setting</a></li>
+                            <li><a href="/help" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Help Center</a></li>
+                            <li>
+                                <form action="{{ route('logout') }}" method="POST" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    @csrf
+                                    <button type="submit" class="w-full text-left">Log Out</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" @click="isOpen = !isOpen"
+                        class="relative inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                        <span class="sr-only">Open main menu</span>
+                        <svg :class="{ 'hidden': isOpen, 'block': !isOpen }" class="block h-6 w-6" viewBox="0 0 24 24">
+                            <path stroke="currentColor" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+                        </svg>
+                        <svg :class="{ 'block': isOpen, 'hidden': !isOpen }" class="hidden h-6 w-6" viewBox="0 0 24 24">
+                            <path stroke="currentColor" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-2 sidebar">
-                <a class="active" href="#"><i class="fas fa-user"></i> Profile</a>
-                <a href="#" id="forum-link"><i class="fas fa-comments"></i> Forum</a>
-                <div id="forum-submenu" style="display: none;">
-                    <a href="#"><i class="fas fa-comment-dots"></i> Discussion</a>
-                    <a href="#"><i class="fas fa-store"></i> Hobby MarketPlace</a>
-                </div>
-                <a href="#"><i class="fas fa-question-circle"></i> Help Me</a>
-            </div>
-            <div class="col-md-10 content">
-                <h1>Hobby MarketPlace</h1>
-                <div class="search-bar">
-                    <input type="text" class="form-control w-50" placeholder="Search">
-                </div>
-                <div class="category-tags">
-                    <select>
-                        <option>Category Tags</option>
-                        <!-- Add categories here -->
-                    </select>
-                </div>
-                <div class="product-grid">
-                    <?php
-                        // Simulasi data produk dalam PHP
-                        $products = [
-                            ["name" => "Nama Produk", "price" => "Rp25.000,00", "image_url" => "https://via.placeholder.com/150"],
-                            ["name" => "Nama Produk", "price" => "Rp25.000,00", "image_url" => "https://via.placeholder.com/150"],
-                            ["name" => "Nama Produk", "price" => "Rp25.000,00", "image_url" => "https://via.placeholder.com/150"],
-                            ["name" => "Nama Produk", "price" => "Rp25.000,00", "image_url" => "https://via.placeholder.com/150"],
-                            ["name" => "Nama Produk", "price" => "Rp25.000,00", "image_url" => "https://via.placeholder.com/150"],
-                            ["name" => "Nama Produk", "price" => "Rp25.000,00", "image_url" => "https://via.placeholder.com/150"]
-                        ];
+    <!-- BODY KONTEN -->
+    <main class="flex-1 max-w-7xl mx-auto flex mt-5 px-6">    <!-- Sidebar -->
+    <div class="w-1/4 bg-white p-4 rounded-lg shadow-lg">
+        <a class="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded" href="#">
+            <i class="fas fa-user"></i> Profile
+            </a>
+          <a class="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded" href="#" id="forum-link">
+        <i class="fas fa-comment-dots"></i> Forum
+        </a>
+        <div id="forum-submenu" class="ml-4">
+            <a class="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded" href="#">
+                <i></i> Discussion
+            </a>
+            <a class="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded" href="#">
+                <i ></i> Hobby Marketplace
+            </a>
+        </div>
+        <a class="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded" href="#">
+            <i class="fas fa-question-circle"></i> Help Me
+        </a>
+    </div>
+  
+<!-- Content area for Hobby Marketplace -->
+<div class="w-3/4 p-6">
+    <!-- Judul Hobby Marketplace di atas kolom pencarian -->
+    <div class="flex flex-col items-center justify-center text-center my-6">
+    <!-- Title Section -->
+    <h2 class="text-4xl font-extrabold text-center mb-4 text-gray-800">Hobby Marketplace</h2>
 
-                        // Looping untuk menampilkan produk
-                        foreach ($products as $product) {
-                            echo '<div class="product-item">';
-                            echo '<img src="' . $product['image_url'] . '" alt="Product Image">';
-                            echo '<h3>' . $product['name'] . '</h3>';
-                            echo '<p>' . $product['price'] . '</p>';
-                            echo '</div>';
-                        }
-                    ?>
-                </div>
-                <div class="footer">
-                    <p>About Us</p>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
+    <!-- Search Bar Section -->
+    <div class="search-bar w-full md:w-1/2">
+        <input 
+            type="text" 
+            class="form-control w-full p-3 border border-gray-300 rounded-lg" 
+            placeholder="Search">
+    </div>
+</div>
+
+    
+    <div class="flex-1 p-4 bg-gray-50 rounded-lg shadow-lg">
+        <div class="mb-4">
+            <label class="block mb-2">Choose Category</label>
+            <div class="relative">
+                <select name="tags" class="w-full p-2 rounded bg-white text-gray-500 appearance-none" required>
+                    <option class="text-gray-500" value="" disabled selected>Select tags...</option>
+                    <option class="text-black">Sport</option>
+                    <option class="text-black">Travel</option>
+                    <option class="text-black">Art & Music</option>
+                    <option class="text-black">Technology</option>
+                    <option class="text-black">Culinary</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
+                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                    </svg>
                 </div>
             </div>
         </div>
-    </div>
-
-    <script>
-        function toggleDropdown() {
-            const dropdown = document.getElementById('dropdownMenu');
-            dropdown.classList.toggle('show');
-        }
-
-        document.getElementById('forum-link').addEventListener('click', function() {
-            const submenu = document.getElementById('forum-submenu');
-            submenu.style.display = submenu.style.display === 'none' || submenu.style.display === '' ? 'block' : 'none';
-        });
-
-        window.onclick = function(event) {
-            if (!event.target.matches('.fa-user-circle')) {
-                const dropdowns = document.getElementsByClassName("dropdown-content");
-                for (let i = 0; i < dropdowns.length; i++) {
-                    const openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
+        <div class="grid grid-cols-3 gap-4 mt-6">
+            <?php
+                $products = [
+                    ["name" => "Nama Produk", "price" => "Rp25.000,00", "image_url" => "https://via.placeholder.com/150"],
+                    ["name" => "Nama Produk", "price" => "Rp25.000,00", "image_url" => "https://via.placeholder.com/150"],
+                    ["name" => "Nama Produk", "price" => "Rp25.000,00", "image_url" => "https://via.placeholder.com/150"],
+                    ["name" => "Nama Produk", "price" => "Rp25.000,00", "image_url" => "https://via.placeholder.com/150"],
+                    ["name" => "Nama Produk", "price" => "Rp25.000,00", "image_url" => "https://via.placeholder.com/150"],
+                    ["name" => "Nama Produk", "price" => "Rp25.000,00", "image_url" => "https://via.placeholder.com/150"]
+                ];
+                foreach ($products as $product) {
+                    echo '<div class="product-item">';
+                    echo '<img src="' . $product['image_url'] . '" alt="Product Image">';
+                    echo '<h3>' . $product['name'] . '</h3>';
+                    echo '<p>' . $product['price'] . '</p>';
+                    echo '</div>';
                 }
-            }
-        }
-    </script>
+            ?>
+        </div>
+
+        <div class="flex flex-col justify-start mt-8 space-y-2">
+            <a href="/create" class="btn btn-primary px-2 py-1 text-xs max-w-xs" style="background-color: #4379F2; border-color: #4379F2;">Create New Product</a>
+        </div>
+    </div>
+</main>
+    
+
+    <!-- FOOTER -->
+    <footer class="py-3 my-4 bg-gray-800">
+        <ul class="nav justify-content-center mb-3">
+            <li class="nav-item font-medium"><a href="#" class="nav-link px-2 text-white">Home</a></li>
+            <li class="nav-item font-medium"><a href="#about-us" class="nav-link px-2 text-white">About</a></li>
+            <li class="nav-item font-medium"><a href="/Community" class="nav-link px-2 text-white">Community</a></li>
+            <li class="nav-item font-medium"><a href="#" class="nav-link px-2 text-white">Help Center</a></li>
+        </ul>
+
+        <ul class="social_icon border-bottom flex justify-center space-x-4 pb-3 mb-3">
+            <li><a href=""><ion-icon name="logo-twitter" class="text-white"></ion-icon></a></li>
+            <li><a href=""><ion-icon name="logo-instagram" class="text-white"></ion-icon></a></li>
+            <li><a href=""><ion-icon name="logo-facebook" class="text-white"></ion-icon></a></li>
+        </ul>
+        <p class="text-center text-white font-medium">Made in ❤️ HobbyNest@2024</p>
+    </footer>
+</div>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
