@@ -20,44 +20,24 @@
     <title>HobbyNest - Hobby Disscussion</title>
 </head>
 <body class="bg-gray-100 font-sans">
-    <!-- Navbar -->
-    <nav class="bg-teal-700 p-4 flex justify-between items-center">
-        <a class="text-white text-2xl font-bold" href="#">
-            <img alt="HOBYNEST logo" class="inline-block h-8 w-8 mr-2" src="img/logo.png"/> HOBBYNEST
-        </a>
-        <div class="flex items-center space-x-4">
-            <a class="text-white hover:text-gray-300" href="#">Home</a>
-            <a class="text-white hover:text-gray-300" href="#">Community</a>
-            <form class="relative">
-                <input class="rounded-full px-4 py-2" placeholder="Search" type="search"/>
-                <button class="absolute right-0 top-0 mt-2 mr-4 text-gray-500" type="submit">
-                    <i class="fas fa-search"></i>
-                </button>
-            </form>
-            <a class="text-white hover:text-gray-300 relative" href="#">
-                <i class="fas fa-bell"></i>
-                <span class="absolute top-0 right-0 inline-block w-2 h-2 bg-red-600 rounded-full"></span>
-            </a>
-            <div class="relative">
-                <a class="text-white hover:text-gray-300" href="#" onclick="toggleDropdown()">
-                    <i class="fas fa-user-circle fa-2x"></i>
+    <!-- Header -->
+    <header class="bg-gray-800 text-white">
+        <div class="container mx-auto px-4 py-4 flex justify-center items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <img src="img/logo.png" alt="HobbyNest Logo" class="h-10">
+                <a href="Home" class="text-lg font-semibold hover:text-gray-300">Home</a>
+                <a href="/community" class="text-lg hover:text-gray-300">Community</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <form class="relative">
+                    <input type="text" placeholder="Search" class="rounded-full px-4 py-2 text-gray-700">
+                </form>
+                <a href="#notifications" aria-label="Notifications">
+                    <i class="fa-solid fa-bell text-xl"></i>
                 </a>
-                <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-20">
-                    <div class="p-3 border-b">
-                        <p class="font-medium">{{ Auth::user()->name }}</p>
-                        <p class="text-sm text-gray-600">{{ Auth::user()->email }}</p>
-                    </div>
-                    <ul>
-                        <li><a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" href="#">Setting</a></li>
-                        <li><a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" href="#">Help Center</a></li>
-                        <li>
-                            <form action="{{ route('logout') }}" method="POST" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                @csrf
-                                <button type="submit" class="w-full text-left">Log Out</button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
+                <a href="/profile" aria-label="User Profile">
+                    <i class="fa-solid fa-user text-xl"></i>
+                </a>
             </div>
         </div>
     </header>

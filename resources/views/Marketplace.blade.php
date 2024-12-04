@@ -98,7 +98,8 @@
     </nav>
 
     <!-- BODY KONTEN -->
-    <main class="flex-1 max-w-7xl mx-auto flex mt-5 px-6">    <!-- Sidebar -->
+    <main class="flex-1 max-w-7xl mx-auto flex mt-5 px-6">    
+        <!-- Sidebar -->
     <div class="w-1/4 bg-white p-4 rounded-lg shadow-lg">
         <a class="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded" href="#">
             <i class="fas fa-user"></i> Profile
@@ -156,27 +157,28 @@
             </div>
         </div>
         <div class="grid grid-cols-3 gap-4 mt-6">
-            <?php
-                $products = [
-                    ["name" => "Nama Produk", "price" => "Rp25.000,00", "image_url" => "https://via.placeholder.com/150"],
-                    ["name" => "Nama Produk", "price" => "Rp25.000,00", "image_url" => "https://via.placeholder.com/150"],
-                    ["name" => "Nama Produk", "price" => "Rp25.000,00", "image_url" => "https://via.placeholder.com/150"],
-                    ["name" => "Nama Produk", "price" => "Rp25.000,00", "image_url" => "https://via.placeholder.com/150"],
-                    ["name" => "Nama Produk", "price" => "Rp25.000,00", "image_url" => "https://via.placeholder.com/150"],
-                    ["name" => "Nama Produk", "price" => "Rp25.000,00", "image_url" => "https://via.placeholder.com/150"]
-                ];
-                foreach ($products as $product) {
-                    echo '<div class="product-item">';
-                    echo '<img src="' . $product['image_url'] . '" alt="Product Image">';
-                    echo '<h3>' . $product['name'] . '</h3>';
-                    echo '<p>' . $product['price'] . '</p>';
-                    echo '</div>';
-                }
-            ?>
-        </div>
-
+    <?php
+        $products = [
+            ["id" => 1, "name" => "Nama Produk", "price" => "Rp25.000,00", "image_url" => "https://via.placeholder.com/150"],
+            ["id" => 2, "name" => "Nama Produk", "price" => "Rp30.000,00", "image_url" => "https://via.placeholder.com/150"],
+            ["id" => 3, "name" => "Nama Produk", "price" => "Rp35.000,00", "image_url" => "https://via.placeholder.com/150"],
+            ["id" => 4, "name" => "Nama Produk", "price" => "Rp40.000,00", "image_url" => "https://via.placeholder.com/150"],
+            ["id" => 5, "name" => "Nama Produk", "price" => "Rp45.000,00", "image_url" => "https://via.placeholder.com/150"],
+            ["id" => 6, "name" => "Nama Produk", "price" => "Rp50.000,00", "image_url" => "https://via.placeholder.com/150"]
+        ];
+        foreach ($products as $product) {
+            echo '<a href="/DetailPesanan=' . $product['id'] . '" class="product-item hover:shadow-lg transition-shadow duration-300">';
+            echo '<div class="p-4 border border-gray-200 rounded-lg">';
+            echo '<img src="' . $product['image_url'] . '" alt="DetailPesanan" class="mb-2 rounded-md">';
+            echo '<h3 class="font-bold text-lg">' . $product['name'] . '</h3>';
+            echo '<p class="text-sm text-gray-600">' . $product['price'] . '</p>';
+            echo '</div>';
+            echo '</a>';
+        }
+    ?>
+</div>
         <div class="flex flex-col justify-start mt-8 space-y-2">
-            <a href="/create" class="btn btn-primary px-2 py-1 text-xs max-w-xs" style="background-color: #4379F2; border-color: #4379F2;">Create New Product</a>
+            <a href="/AddNewProduct" class="btn btn-primary px-2 py-1 text-xs max-w-xs" style="background-color: #4379F2; border-color: #4379F2;">Create New Product</a>
         </div>
     </div>
 </main>
@@ -196,7 +198,7 @@
             <li><a href=""><ion-icon name="logo-instagram" class="text-white"></ion-icon></a></li>
             <li><a href=""><ion-icon name="logo-facebook" class="text-white"></ion-icon></a></li>
         </ul>
-        <p class="text-center text-white font-medium">Made in ❤️ HobbyNest@2024</p>
+        <p class="text-center text-white font-medium">Made in ❤ HobbyNest@2024</p>
     </footer>
 </div>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

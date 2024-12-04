@@ -4,22 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Community;
+use App\Http\Controllers\Controller;
 
 class CommunityController extends Controller
 {
     public function index(Request $request)
     {
         // Mengambil semua komunitas dari database
-        $community = Community::all();
+        $communities = Community::all();
 
         // Mengirimkan data komunitas ke view
         if ($request->wantsJson()) {
-            return response()->json($community);
+            return response()->json($communities);
         } else {
-            return view('Community', compact('community'))->with('community', $community);
+            return view('Community', compact('communities'));
         }
     }
-    // Mengirimkan data komunitas sebagai JSON jika diminta
 
     public function create()
     {
@@ -35,17 +35,17 @@ class CommunityController extends Controller
             'description' => 'required|string',
         ]);
 
-        $community = new Community();
-        $community->name = $request->name;
-        $community->tags = $request->tags;
-        $community->description = $request->description;
+       $communities = new Community();
+       $communities->name = $request->name;
+       $communities->tags = $request->tags;
+       $communities->description = $request->description;
 
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('community_images', 'public');
-            $community->image = $imagePath;
+           $communities->image = $imagePath;
         }
 
-        $community->save();
+       $communities->save();
 
         if ($request->wantsJson()) {
             return response()->json($community);
@@ -54,12 +54,45 @@ class CommunityController extends Controller
         }
     }
 
-    public function show(Request $request, $id)
+    public function show($id, Request $request)
     {
-        $community = Community::findOrFail($id);
+       $communities = Community::findOrFail($id);
 
         if ($request->wantsJson()) {
-            return response()->json($community);
+            $response = [
+                'id' =>$communities->id,
+                'name' =>$communities->name,
+                'tags' =>$communities->tags,
+                'description' =>$communities->description,
+                'image' => asset('storage/' .$communities->image),
+                'links' => [
+                    [
+                        'rel' => 'self',
+                        'href' => route('community.show',$communities->id)
+                    ],
+                    [
+                        'rel' => 'edit',
+                        'href' => route('community.edit',$communities->id)
+                    ],
+                    [
+                        'rel' => 'delete',
+                        'href' => route('community.destroy',$communities->id)
+                    ],
+                    [
+                        'rel' => 'forum',
+                        'href' => route('community.forum',$communities->id)
+                    ],
+                    [
+                        'rel' => 'join_community',
+                        'href' => route('community.index')
+                    ],
+                    [
+                        'rel' => 'create_community',
+                        'href' => route('api.links.create')
+                    ]
+                ]
+            ];
+            return response()->json($response);
         } else {
             return view('Community', compact('community'));
         }
@@ -67,7 +100,21 @@ class CommunityController extends Controller
 
     public function forum($id)
     {
-        $community = Community::findOrFail($id);
-        return view('Forum', compact('community'));
+       $communities = Community::findOrFail($id);
+        return view('Forum', compact('communities'));
+    }
+
+    public function edit($id)
+    {
+       $communities = Community::findOrFail($id);
+        return view('EditCommunity', compact('communities'));
+    }
+
+    public function destroy($id)
+    {
+       $communities = Community::findOrFail($id);
+       $communities->delete();
+
+        return redirect()->route('community.index')->with('success', 'Community deleted successfully.');
     }
 }

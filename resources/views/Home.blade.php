@@ -157,7 +157,7 @@
   </div>
   <!-- Button Join dan Create -->
   <div class="flex flex-col justify-start mt-6 space-y-2">
-    <a href="/Community" class="btn btn-primary px-2 py-1 text-xs max-w-xs" style="background-color: #4379F2; border-color: #4379F2;">Join Community</a>
+    <a href="/api/community" class="btn btn-primary px-2 py-1 text-xs max-w-xs" style="background-color: #4379F2; border-color: #4379F2;">Join Community</a>
     
     <div class="flex w-full">
         <span class="text-gray-500 text-xs px-[150px]">or</span>
@@ -261,6 +261,22 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const createCommunityButton = document.getElementById('create-community');
+
+            createCommunityButton.addEventListener('click', function() {
+                fetch('/api/links/create')
+                    .then(response => response.json())
+                    .then(data => {
+                        const createCommunityHref = data.links.find(link => link.rel === 'create_community').href;
+                        window.location.href = createCommunityHref;
+                    })
+                    .catch(error => console.error('Error fetching create link:', error));
+            });
+        });
+    </script>
 </body>
 
 </html>

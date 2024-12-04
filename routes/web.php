@@ -23,7 +23,7 @@ Route::middleware(['auth'])->group(function () {
     })->name('admin');
 });
 
-Route::get('/Community', function () {
+Route::get('/community', function () {
     return view('Community');
 });
 
@@ -44,6 +44,10 @@ Route::get('/create', function () {
 
 Route::get('/Forum', function () {
     return view('Forum');
+});
+
+Route::get('/Add', function () {
+    return view('AddProduct');
 });
 
 Route::get('/Disscussion', function () {
