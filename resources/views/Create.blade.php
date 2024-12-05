@@ -160,13 +160,17 @@
                     <button type="button" class="bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded border border-gray-700" onclick="document.getElementById('fileInput').click();">
                         Choose File
                     </button>
-                    <input type="file" id="fileInput" name="image" class="hidden" onchange="updateFileName(this)">
+                    <input type="file" id="fileInput" name="image" class="hidden" accept=".jpg, .jpeg, .png" onchange="updateFileName(this)">
                     <span id="fileName" class="ml-3">No File Chosen</span>
                 </div>
             </div>
             <div class="mb-4">
                 <label class="block mb-2">Enter Community Description</label>
                 <textarea name="description" class="w-full p-2 rounded bg-white text-black" rows="6" required></textarea>
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2">Link Group</label>
+                 <input type="url" name="whatsapp_link" class="w-full p-2 rounded bg-white text-black" placeholder="https://chat.whatsapp.com/your-invitation-link" required>
             </div>
             <div class="text-right">
                 <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">

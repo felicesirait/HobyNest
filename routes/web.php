@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommunityController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ProductController;
+
 
 Route::get('/', function () {
     return view('HobbyNest');
@@ -58,9 +61,9 @@ Route::get('/Disscussion', function () {
 //     return view('EditProfile');
 // });
 
-Route::get('/Marketplace', function () {
-    return view('Marketplace');
-});
+// Route::get('/Marketplace', function () {
+//     return view('Marketplace');
+// });
 
 Route::get('/DetailPesanan', function () {
     return view('DetailPesanan');
@@ -80,7 +83,7 @@ Route::post('/logout', [AuthManager::class, 'signOut'])->name('logout');
 
 // Route::get('/Sign Out', [AuthManager::class, 'signOut'])->name('signOut');
 
-
+Route::get('/forum/{id}', [ForumController::class, 'show'])->name('forum.show');
 
 // Route::get('/admin', function () {
 //     return view('Admin');
@@ -99,3 +102,17 @@ Route::put('/profile', [ProfileController::class, 'update'])->name('profile.upda
 
 // // Rute untuk forum komunitas
 // Route::get('/community/{id}/forum', [CommunityController::class, 'forum'])->name('community.forum');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/community/create', [CommunityController::class, 'create'])->name('community.create');
+    Route::post('/community/store', [CommunityController::class, 'store'])->name('community.store');
+});
+
+Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('login', [LoginController::class, 'login']);
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/Marketplace', [CommunityController::class, 'showMarketplace'])->name('marketplace');
+Route::post('/AddProduct', [CommunityController::class, 'storeProduct'])->name('product.store');
+
+Route::get('/Marketplace', [CommunityController::class, 'showMarketplace'])->name('marketplace');
+Route::post('/AddProduct', [ProductController::class, 'store'])->name('product.store');

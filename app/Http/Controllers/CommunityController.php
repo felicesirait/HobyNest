@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Community;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CommunityController extends Controller
 {
@@ -26,19 +27,27 @@ class CommunityController extends Controller
         return view('Create');
     }
 
+
     public function store(Request $request)
     {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'You must be logged in to create a community.');
+        }
+
         $request->validate([
             'name' => 'required|string|max:255',
             'tags' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'description' => 'required|string',
+            'whatsapp_link' => 'required|url',
         ]);
 
        $communities = new Community();
        $communities->name = $request->name;
        $communities->tags = $request->tags;
        $communities->description = $request->description;
+       $imagePath = $request->file('image')->store('community_images', 'public');
+       $communities->whatsapp_link = $request->input('whatsapp_link');
 
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('community_images', 'public');
@@ -56,7 +65,8 @@ class CommunityController extends Controller
 
     public function show($id, Request $request)
     {
-       $communities = Community::findOrFail($id);
+       $communityName = $request->query('community_name');
+       $communities = Community::where('name', $communityName)->firstOrFail();
 
         if ($request->wantsJson()) {
             $response = [
@@ -94,7 +104,7 @@ class CommunityController extends Controller
             ];
             return response()->json($response);
         } else {
-            return view('Community', compact('community'));
+            return view('Community', compact('communities'));
         }
     }
 
@@ -104,6 +114,15 @@ class CommunityController extends Controller
         return view('Forum', compact('communities'));
     }
 
+    public function showMarketplace(Request $request)
+    {
+        $communityName = $request->query('community_name');
+        $community = Community::where('name', $communityName)->firstOrFail();
+
+        return view('marketplace', compact('community'));
+    }
+    
+    
     public function edit($id)
     {
        $communities = Community::findOrFail($id);

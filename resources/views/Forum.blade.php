@@ -43,61 +43,32 @@
     </header>
 
     <!-- Content -->
-    <div class="container mx-auto flex mt-8">
-        <!-- Sidebar -->
-        <aside class="w-1/4 bg-white rounded-lg shadow-lg p-4">
-            <a href="#" class="block py-2 px-4 hover:bg-gray-200 rounded text-gray-700">
-                <i class="fas fa-user mr-2"></i> Profile
-            </a>
-            <a href="#" class="block py-2 px-4 hover:bg-gray-200 rounded text-gray-700">
-                <i class="fas fa-comments mr-2"></i> Forum
-            </a>
-            <div class="ml-4">
-                <a href="#" class="block py-2 px-4 hover:bg-gray-200 rounded text-gray-700">
-                    <i class="fas fa-comment-dots mr-2"></i> Discussion
-                </a>
-                <a href="#" class="block py-2 px-4 hover:bg-gray-200 rounded text-gray-700">
-                    <i class="fas fa-store mr-2"></i> Hobby Marketplace
-                </a>
-            </div>
-            <a href="#" class="block py-2 px-4 hover:bg-gray-200 rounded text-gray-700">
-                <i class="fas fa-question-circle mr-2"></i> Help Me
-            </a>
-        </aside>
-
+        <div class="container mx-auto mt-8">
         <!-- Main Content -->
-        <main class="w-3/4 bg-white rounded-lg shadow-lg p-8">
-            <h1 class="text-3xl font-bold mb-4">FIND YOUR PASSION </h1>
-            <img src="img/knitting.jpg" alt="Knitting" class="rounded-lg mb-6">
-            <p class="text-gray-700 mb-6">
-            Welcome to HobbyNest! This is a vibrant community forum dedicated to hobby enthusiasts of all kinds. Whether you’re into knitting, crochet, painting, gardening, cooking, woodworking, photography, or any other creative pursuit, this is the place for you. Here, members can share ideas, showcase projects, discuss techniques, and exchange tips and tricks for mastering their favorite hobbies. The forum is also a space to find inspiration, collaborate on projects, and support each other in developing new skills. At HobbyHaven, we celebrate creativity and connection, bringing together hobbyists from diverse backgrounds to share their passion and grow together. 
-            </p>
-            <div class="flex flex-col items-start space-y-4 mb-6">
+        <main class="bg-white rounded-lg shadow-lg p-8">
+            <h1 class="text-3xl font-bold mb-4 text-center">{{ $communities->name }}</h1>
+            <div class="flex justify-center">
+                <div class="border border-gray-300 rounded-lg p-2 inline-block">
+                    <img src="{{ asset('storage/' . $communities->image) }}" alt="{{ $communities->name }}" class="w-1/2 h-auto rounded-lg mx-auto">
+                </div>
+            </div>
+            <div class="border border-gray-300 rounded-lg p-4 flex items-center justify-center">
+                <p class="text-gray-700 mb-6 text-justify text-center">{{ $communities->description }}</p>
+            </div>        
+            <div class="flex flex-col items-center space-y-4 mb-6">
                 <div class="d-flex justify-content-center align-items-center mt-3">
                     <p class="mb-0"><strong>Members:</strong> 100 Subscribers</p>
                 </div>
-                <div class="mt-3">
-                    <button class="btn btn-primary btn-custom">Discussion Forum</button>
-                    <button class="btn btn-danger btn-custom">Hobby Marketplace</button>
+                <div class="mt-3 w-full flex justify-center">
+                    <button class="btn btn-primary btn-custom w-1/2" onclick="window.location.href='{{ $communities->whatsapp_link }}'">Go to Forum</button>
                 </div>
+                <form action="/Marketplace" method="get" class="w-full mt-3 flex justify-center">
+                    <input type="hidden" name="community_name" value="{{ $communities->name }}">
+                    <button type="submit" class="btn btn-danger btn-custom w-1/2">To Marketplace</button>
+                </form>
             </div>
-
-            <hr class="mb-6">
-            <h2 class="text-2xl font-semibold mb-4">Recent Topics</h2>
-            <div class="grid grid-cols-3 gap-4">
-                <div class="bg-gray-100 rounded-lg shadow-lg p-4 text-center">
-                    <img src="img/topic1.jpg" alt="Topic 1" class="rounded-lg mb-2">
-                    <h3 class="text-lg font-medium"> Designs</h3>
-                </div>
-                <div class="bg-gray-100 rounded-lg shadow-lg p-4 text-center">
-                    <img src="img/topic2.jpg" alt="Topic 2" class="rounded-lg mb-2">
-                    <h3 class="text-lg font-medium"> Tips & Tricks</h3>
-                </div>
-                <div class="bg-gray-100 rounded-lg shadow-lg p-4 text-center">
-                    <img src="img/topic3.jpg" alt="Topic 3" class="rounded-lg mb-2">
-                    <h3 class="text-lg font-medium"> Recommendations</h3>
-                </div>
-            </div>
+    
+        
         </main>
     </div>
 

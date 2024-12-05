@@ -129,49 +129,29 @@
       </nav>
     </header>
 
-    <main class="container mx-auto mt-8 p-6 bg-gray-800 rounded-lg">
-        <h1 class="text-2xl font-bold mb-6">Enter Product Name</h1>
-        <form action="{{ route('community.store') }}" method="POST" enctype="multipart/form-data">
+    <main class="container mx-auto mt-8">
+        <h2 class="text-2xl font-bold mb-4">Create New Product</h2>
+        <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-4">
-                <input type="text" name="name" class="w-full p-2 rounded bg-white text-black" placeholder="Product Name" required>
+                <label for="name" class="block text-gray-700">Product Name</label>
+                <input type="text" name="name" id="name" class="w-full p-2 border border-gray-300 rounded-lg text-black" required>
             </div>
             <div class="mb-4">
-                <label class="block mb-2">Choose Tags</label>
-                <div class="relative">
-                    <select name="tags" class="w-full p-2 rounded bg-white text-gray-500 appearance-none" required>
-                        <option class="text-gray-500" value="" disabled selected>Select tags...</option>
-                        <option class="text-black">Sport</option>
-                        <option class="text-black">Travel</option>
-                        <option class="text-black">Art & Music</option>
-                        <option class="text-black">Technology</option>
-                        <option class="text-black">Culinary</option>
-                    </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
-                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-                        </svg>
-                    </div>
-                </div>
+                <label for="price" class="block text-gray-700">Price (Rp)</label>
+                <input type="number" name="price" id="price" class="w-full p-2 border border-gray-300 rounded-lg text-black" min="100" step="100" placeholder="Rp100" required>
             </div>
             <div class="mb-4">
-                <label class="block mb-2">Image</label>
-                <div class="flex items-center">
-                    <button type="button" class="bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded border border-gray-700" onclick="document.getElementById('fileInput').click();">
-                        Choose File
-                    </button>
-                    <input type="file" id="fileInput" name="image" class="hidden" onchange="updateFileName(this)">
-                    <span id="fileName" class="ml-3">No File Chosen</span>
-                </div>
+                <label for="image" class="block text-gray-700">Product Image</label>
+                <input type="file" name="image" id="image" class="w-full p-2 border border-gray-300 rounded-lg text-black" accept=".jpg, .jpeg, .png" required onchange="updateFileName(this)">
+                <span id="fileName" class="ml-3 text-gray-700">No file chosen</span>
             </div>
             <div class="mb-4">
-                <label class="block mb-2">Enter Description Product</label>
-                <textarea name="description" class="w-full p-2 rounded bg-white text-black" rows="6" required></textarea>
+                <label for="description" class="block text-gray-700">Enter Description Product</label>
+                <textarea name="description" id="description" class="w-full p-2 border border-gray-300 rounded-lg bg-white text-black" rows="6" required></textarea>
             </div>
-            <div class="text-right">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                    Publish
-                </button>
+            <div class="mb-4">
+                <button type="submit" class="btn btn-primary px-4 py-2" style="background-color: #4379F2; border-color: #4379F2;">Add Product</button>
             </div>
         </form>
     </main>
@@ -195,8 +175,20 @@
     </footer>
 
     <script>
+        function validatePrice() {
+            const priceInput = document.getElementById('price');
+            const priceValue = parseInt(priceInput.value, 10);
+
+            if (isNaN(priceValue) || priceValue < 100) {
+                alert('Please enter a valid price starting from Rp100.');
+                return false;
+            }
+
+            return true;
+        }
+
         function updateFileName(input) {
-            const fileName = input.files.length > 0 ? input.files[0].name : 'No File Chosen';
+            const fileName = input.files.length > 0 ? input.files[0].name : 'No file chosen';
             document.getElementById('fileName').textContent = fileName;
         }
     </script>

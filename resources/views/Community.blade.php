@@ -144,7 +144,6 @@
             @foreach($communities as $communities)
                 <a href="{{ route('community.forum', $communities->id) }}" class="bg-white p-6 rounded-lg shadow-lg block">
                     <h2 class="text-xl font-bold mb-2">{{ $communities->name }}</h2>
-                    <p class="text-gray-700 mb-4">{{ $communities->description }}</p>
                     @if($communities->image)
                         <img src="{{ asset('storage/' . $communities->image) }}" alt="{{ $communities->name }}" class="w-full h-48 object-cover rounded-lg mb-4">
                     @endif

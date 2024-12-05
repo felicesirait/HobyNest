@@ -43,7 +43,7 @@
 
                 <div class="hidden md:flex items-baseline space-x-5" id="nav-item">
                     <a href="/Home" class="rounded-md px-3 py-2 text-sm font-medium text-white no-underline">Home</a>
-                    <a href="/community" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white no-underline">Community</a>
+                    <a href="/api/community" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white no-underline">Community</a>
                 </div>
 
                 <form class="d-flex ml-auto" role="search">
@@ -99,89 +99,48 @@
 
     <!-- BODY KONTEN -->
     <main class="flex-1 max-w-7xl mx-auto flex mt-5 px-6">    
-        <!-- Sidebar -->
-    <div class="w-1/4 bg-white p-4 rounded-lg shadow-lg">
-        <a class="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded" href="#">
-            <i class="fas fa-user"></i> Profile
-            </a>
-          <a class="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded" href="#" id="forum-link">
-        <i class="fas fa-comment-dots"></i> Forum
-        </a>
-        <div id="forum-submenu" class="ml-4">
-            <a class="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded" href="#">
-                <i></i> Discussion
-            </a>
-            <a class="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded" href="#">
-                <i ></i> Hobby Marketplace
-            </a>
-        </div>
-        <a class="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded" href="#">
-            <i class="fas fa-question-circle"></i> Help Me
-        </a>
-    </div>
-  
-<!-- Content area for Hobby Marketplace -->
-<div class="w-3/4 p-6">
-    <!-- Judul Hobby Marketplace di atas kolom pencarian -->
-    <div class="flex flex-col items-center justify-center text-center my-6">
-    <!-- Title Section -->
-    <h2 class="text-4xl font-extrabold text-center mb-4 text-gray-800">Hobby Marketplace</h2>
-
-    <!-- Search Bar Section -->
-    <div class="search-bar w-full md:w-1/2">
-        <input 
-            type="text" 
-            class="form-control w-full p-3 border border-gray-300 rounded-lg" 
-            placeholder="Search">
-    </div>
-</div>
-
-    
-    <div class="flex-1 p-4 bg-gray-50 rounded-lg shadow-lg">
-        <div class="mb-4">
-            <label class="block mb-2">Choose Category</label>
-            <div class="relative">
-                <select name="tags" class="w-full p-2 rounded bg-white text-gray-500 appearance-none" required>
-                    <option class="text-gray-500" value="" disabled selected>Select tags...</option>
-                    <option class="text-black">Sport</option>
-                    <option class="text-black">Travel</option>
-                    <option class="text-black">Art & Music</option>
-                    <option class="text-black">Technology</option>
-                    <option class="text-black">Culinary</option>
-                </select>
-                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
-                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                    </svg>
+        <!-- Content area for Hobby Marketplace -->
+        <div class="w-3/4 p-6 mx-auto">
+            <!-- Judul Hobby Marketplace di atas kolom pencarian -->
+            <div class="flex flex-col items-center justify-center text-center my-6">
+                <!-- Title Section -->
+                <h2 class="text-4xl font-extrabold text-center mb-4 text-gray-800">{{ $community->name }}</h2>
+                <!-- Search Bar Section -->
+                <div class="search-bar w-full md:w-1/2">
+                    <input 
+                        type="text" 
+                        class="form-control w-full p-3 border border-gray-300 rounded-lg" 
+                        placeholder="Search">
                 </div>
             </div>
+
+            <div class="flex-1 p-4 bg-gray-50 rounded-lg shadow-lg mx-auto">
+                <div class="grid grid-cols-3 gap-4 mt-6">
+                    <?php
+                        $products = [
+                            ["id" => 1, "name" => "Nama Produk", "price" => "Rp25.000,00", "image_url" => "https://via.placeholder.com/150"],
+                            ["id" => 2, "name" => "Nama Produk", "price" => "Rp30.000,00", "image_url" => "https://via.placeholder.com/150"],
+                            ["id" => 3, "name" => "Nama Produk", "price" => "Rp35.000,00", "image_url" => "https://via.placeholder.com/150"],
+                            ["id" => 4, "name" => "Nama Produk", "price" => "Rp40.000,00", "image_url" => "https://via.placeholder.com/150"],
+                            ["id" => 5, "name" => "Nama Produk", "price" => "Rp45.000,00", "image_url" => "https://via.placeholder.com/150"],
+                            ["id" => 6, "name" => "Nama Produk", "price" => "Rp50.000,00", "image_url" => "https://via.placeholder.com/150"]
+                        ];
+                        foreach ($products as $product) {
+                            echo '<a href="/DetailPesanan=' . $product['id'] . '" class="product-item hover:shadow-lg transition-shadow duration-300">';
+                            echo '<div class="p-4 border border-gray-200 rounded-lg">';
+                            echo '<img src="' . $product['image_url'] . '" alt="DetailPesanan" class="mb-2 rounded-md mx-auto">';
+                            echo '<h3 class="font-bold text-lg text-center">' . $product['name'] . '</h3>';
+                            echo '<p class="text-sm text-gray-600 text-center">' . $product['price'] . '</p>';
+                            echo '</div>';
+                            echo '</a>';
+                        }
+                    ?>
+                </div>
+                <div class="flex flex-col justify-start items-center mt-8 space-y-2">
+                    <a href="/Add" class="btn btn-primary px-2 py-1 text-xs max-w-xs" style="background-color: #4379F2; border-color: #4379F2;">Create New Product</a>
+                </div>
         </div>
-        <div class="grid grid-cols-3 gap-4 mt-6">
-    <?php
-        $products = [
-            ["id" => 1, "name" => "Nama Produk", "price" => "Rp25.000,00", "image_url" => "https://via.placeholder.com/150"],
-            ["id" => 2, "name" => "Nama Produk", "price" => "Rp30.000,00", "image_url" => "https://via.placeholder.com/150"],
-            ["id" => 3, "name" => "Nama Produk", "price" => "Rp35.000,00", "image_url" => "https://via.placeholder.com/150"],
-            ["id" => 4, "name" => "Nama Produk", "price" => "Rp40.000,00", "image_url" => "https://via.placeholder.com/150"],
-            ["id" => 5, "name" => "Nama Produk", "price" => "Rp45.000,00", "image_url" => "https://via.placeholder.com/150"],
-            ["id" => 6, "name" => "Nama Produk", "price" => "Rp50.000,00", "image_url" => "https://via.placeholder.com/150"]
-        ];
-        foreach ($products as $product) {
-            echo '<a href="/DetailPesanan=' . $product['id'] . '" class="product-item hover:shadow-lg transition-shadow duration-300">';
-            echo '<div class="p-4 border border-gray-200 rounded-lg">';
-            echo '<img src="' . $product['image_url'] . '" alt="DetailPesanan" class="mb-2 rounded-md">';
-            echo '<h3 class="font-bold text-lg">' . $product['name'] . '</h3>';
-            echo '<p class="text-sm text-gray-600">' . $product['price'] . '</p>';
-            echo '</div>';
-            echo '</a>';
-        }
-    ?>
-</div>
-        <div class="flex flex-col justify-start mt-8 space-y-2">
-            <a href="/AddNewProduct" class="btn btn-primary px-2 py-1 text-xs max-w-xs" style="background-color: #4379F2; border-color: #4379F2;">Create New Product</a>
-        </div>
-    </div>
-</main>
+    </main>
     
 
     <!-- FOOTER -->
