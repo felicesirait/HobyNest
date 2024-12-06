@@ -80,19 +80,6 @@
                         </ul>
                     </div>
                 </div>
-
-                <div class="-mr-2 flex md:hidden">
-                    <button type="button" @click="isOpen = !isOpen"
-                        class="relative inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                        <span class="sr-only">Open main menu</span>
-                        <svg :class="{ 'hidden': isOpen, 'block': !isOpen }" class="block h-6 w-6" viewBox="0 0 24 24">
-                            <path stroke="currentColor" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
-                        </svg>
-                        <svg :class="{ 'block': isOpen, 'hidden': !isOpen }" class="hidden h-6 w-6" viewBox="0 0 24 24">
-                            <path stroke="currentColor" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
             </div>
         </div>
     </nav>
@@ -157,7 +144,7 @@
             <li><a href=""><ion-icon name="logo-instagram" class="text-white"></ion-icon></a></li>
             <li><a href=""><ion-icon name="logo-facebook" class="text-white"></ion-icon></a></li>
         </ul>
-        <p class="text-center text-white font-medium">Made in ❤ HobbyNest@2024</p>
+        <p class="text-center text-white font-medium">Made in ❤️ HobbyNest@2024</p>
     </footer>
 </div>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

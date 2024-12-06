@@ -63,10 +63,9 @@
                     </a>
                     <hr class="soft my-1 bg-white">
 
-                    {{-- <a class="nav-link px-3" href="{{ route('admin.deleteUser') }}">
+                    {{-- <a class="nav-link px-3" href="">
                         <i class="fa fa-dropbox fa-lg box-icon" aria-hidden="true"></i>Report Community
                     </a> --}}
-                    
                     <a class="nav-link px-3" href="{{ route('admin.showDeletePage') }}">
                         <i class="fa fa-dropbox fa-lg box-icon" aria-hidden="true"></i>Delete Community
                     </a>
@@ -87,72 +86,54 @@
             <div class="container-fluid">
                 <div class="row g-2 mb-3">
                     <div class="col-12">
-                        <div class="d-block bg-white rounded shadow p-3">
+
+                        <div class="d-block bg-white rounded shadow p-3 mb-4">
                             <h2>Hello {{ Auth::user()->name }}</h2>
                             <p>Easily monitor and manage user and community activities on the platform. 
                                 As an admin, you can monitor user development and ensure the community runs harmoniously. 
                                 Keep creating the best experience for all members!</p>
                         </div>
-                    </div>
-                </div>
 
-                <div class="row g-3 mb-3">
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                        <div class="card p-2 shadow">
-                            <div class="d-flex align-items-center px-2">
-                                <i class="fa fa-users float-start fa-3x py-auto" aria-hidden="true"></i>
-                                <div class="card-body text-end">
-                                    <h5 class="card-title">{{ $userCount }}</h5>
-                                    <p class="card-text">Users</p>
-                                </div>
+                        @if(session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
                             </div>
-                            <div class="card-footer bg-white">
-                                <small class="text-start fw-bold">Your Users</small>
-                            </div>
+                        @endif
+
+                        <div class="d-block bg-white rounded shadow">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Tags</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($communities as $community)
+                                    <tr>
+                                        <td>{{ $community->id }}</td>
+                                        <td>{{ $community->name }}</td>
+                                        <td>{{ $community->tags }}</td>
+                                        <td>
+                                            <form action="{{ route('admin.deleteCommunity', $community->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
-                    </div>
 
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                        <div class="card p-2 shadow">
-                            <div class="d-flex align-items-center px-2">
-                                <i class="fa fa-connectdevelop float-start fa-3x py-auto" aria-hidden="true"></i>
-                                <div class="card-body text-end">
-                                    <h5 class="card-title">{{ $communityCount }}</h5>
-                                    <p class="card-text">Communities</p>
-                                </div>
-                            </div>
-                            <div class="card-footer bg-white">
-                                <small class="text-start fw-bold">The Community</small>
-                            </div>
-                        </div>
                     </div>
                 </div>
-
-                <div class="d-block bg-white rounded shadow mt-3">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Joined At</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($users as $user)
-                            <tr>
-                                <td>{{ $user->id }}</td>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->created_at->format('d M Y') }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                
             </div>
         </div>
+
     </div>
 
     <div class="slider-background" id="sliders-background"></div>
@@ -160,8 +141,6 @@
     <script src="{{ asset('assets/app/js/bootstrap.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{ asset('dist/js/index.js') }}"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </body>
 

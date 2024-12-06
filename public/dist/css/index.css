@@ -53,9 +53,7 @@
     width: 260px;
     height: 100vh;
     position: fixed;
-    background: #f953c6;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #b91d73, #f953c6);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #b91d73, #f953c6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-color: #0d1a35;
     transition: all 0.3s;
     z-index: 9;
 }

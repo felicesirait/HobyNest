@@ -29,6 +29,7 @@
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
     <title>HobbyNest</title>
 </head>
+
 <body>
     <!-- Header -->
     <header>
@@ -96,27 +97,7 @@
                       </li>
                   </ul>
               </div>
-            </div>
-        
-          <div class="-mr-2 flex md:hidden">
-            <!-- Mobile menu button -->
-            <button type="button" @click="isOpen = !isOpen"
-              class="relative inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" aria-controls="mobile-menu" aria-expanded="false">
-                <span class="absolute -inset-0.5"></span>
-                <span class="sr-only">Open main menu</span>
-                <!-- Menu open: "hidden", Menu closed: "block" -->
-                <svg :class="{'hidden': isOpen, 'block': !isOpen }"
-                class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                </svg>
-                <!-- Menu open: "block", Menu closed: "hidden" -->
-                <svg :class="{'block': isOpen, 'hidden': !isOpen }"
-                class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-        
+            </div>   
           </div>
         </div>
         
@@ -154,14 +135,14 @@
     </main>
     
     <!-- FOOTER -->
-    <footer class="py-3 my-4 bg-gray-800">
+    <footer class="py-3 my-4 bg-gray-800 mb-0">
       <ul class="social_icon border-bottom flex justify-center space-x-4 pb-3 mb-3">
         <li><a href=""><ion-icon name="logo-twitter" class="text-white"></ion-icon></a></li>
         <li><a href="h"><ion-icon name="logo-instagram" class="text-white"></ion-icon></a></li>
         <li><a href=""><ion-icon name="logo-facebook" class="text-white"></ion-icon></a></li>
       </ul>
     
-      <p class="text-center text-white font-medium">Made in ❤ HobbyNest@2024 </p>
+      <p class="text-center text-white font-medium">Made in ❤️ HobbyNest@2024</p>
     </footer>
     
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

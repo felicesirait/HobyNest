@@ -6,6 +6,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ForumController;
 
 
 Route::get('/', function () {
@@ -83,7 +85,7 @@ Route::post('/logout', [AuthManager::class, 'signOut'])->name('logout');
 
 // Route::get('/Sign Out', [AuthManager::class, 'signOut'])->name('signOut');
 
-Route::get('/forum/{id}', [ForumController::class, 'show'])->name('forum.show');
+// Route::get('/forum/{id}', [ForumController::class, 'show'])->name('forum.show');
 
 // Route::get('/admin', function () {
 //     return view('Admin');
@@ -116,3 +118,10 @@ Route::post('/AddProduct', [CommunityController::class, 'storeProduct'])->name('
 
 Route::get('/Marketplace', [CommunityController::class, 'showMarketplace'])->name('marketplace');
 Route::post('/AddProduct', [ProductController::class, 'store'])->name('product.store');
+
+
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+Route::get('/admin/delete', [AdminController::class, 'showDeletePage'])->name('admin.showDeletePage');
+Route::delete('/admin/delete-community/{id}', [AdminController::class, 'destroyCommunity'])->name('admin.deleteCommunity');
+
+
