@@ -7,7 +7,6 @@ use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ForumController;
 
 
 Route::get('/', function () {
@@ -123,5 +122,3 @@ Route::post('/AddProduct', [ProductController::class, 'store'])->name('product.s
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 Route::get('/admin/delete', [AdminController::class, 'showDeletePage'])->name('admin.showDeletePage');
 Route::delete('/admin/delete-community/{id}', [AdminController::class, 'destroyCommunity'])->name('admin.deleteCommunity');
-
-

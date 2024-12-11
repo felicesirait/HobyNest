@@ -11,8 +11,16 @@ class CommunityController extends Controller
 {
     public function index(Request $request)
     {
-        // Mengambil semua komunitas dari database
-        $communities = Community::all();
+        $keyword = $request->keyword;
+
+        // Mengambil semua komunitas dari database yang sesuai dengan keyword
+        if ($keyword) {
+            $communities = Community::where('name', 'like', '%' . $keyword . '%')
+                                    ->orWhere('tags', 'like', '%' . $keyword . '%')
+                                    ->get();
+        } else {
+            $communities = Community::all();
+        }
 
         // Mengirimkan data komunitas ke view
         if ($request->wantsJson()) {
@@ -57,7 +65,7 @@ class CommunityController extends Controller
        $communities->save();
 
         if ($request->wantsJson()) {
-            return response()->json($community);
+            return response()->json($communities);
         } else {
             return redirect()->route('community.index')->with('success', 'Community created successfully.');
         }

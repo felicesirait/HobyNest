@@ -33,93 +33,70 @@
 </head>
 
 <body class="h-full">
-
-
 <div class="min-h-full bg-white">
     <!-- NAVIGASI -->
     <nav class="bg-gray-800" x-data="{ isOpen: false }">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex h-22 items-center justify-between">
-    
+
           <div class="flex items-center">
             <div class="flex-shrink-0">
               <img class="logo-size" src="img/logo.png" alt="Logo HobbyNest">
             </div>
-          </div>
-        
-          <div class="hidden md:flex items-baseline space-x-5" id="nav-item">
-            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="/Home" class="rounded-md px-3 py-2 text-sm font-medium text-white no-underline" aria-current="page">Home</a>
-            <a href="/api/community" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white no-underline">Community</a>
+            <div class="hidden md:flex items-baseline space-x-5 ml-10" id="nav-item">
+              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+              <a href="/Home" class="rounded-md px-3 py-2 text-sm font-medium text-white no-underline" aria-current="page">Home</a>
+              <a href="/api/community" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white no-underline">Community</a>
+            </div>
           </div>
 
-          <form class="d-flex ml-auto" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          </form>
-
-            <!--Logo Bell bisa  di klik-->
+          <div class="flex items-center space-x-4">
+            <!--Logo Bell bisa di klik-->
             <a href="#notifications" role="button" aria-label="Notifications" onclick="toggleNotifications()">
-              <ion-icon name="notifications" class="text-white px-3 py-2" style="font-size: 2rem;"></ion-icon>
+              <ion-icon name="notifications" class="text-white py-2" style="font-size: 2rem;"></ion-icon>
             </a>
-            
+
             <!-- Notification Box -->
             <div id="notificationBox" class="hidden absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg z-20">
-                <div class="p-4">
-                    <p class="font-medium">Notifications</p>
-                    <ul class="mt-2">
-                        <li class="border-b py-2">No new notifications</li>
-                        <!-- Add more notifications here -->
-                    </ul>
-                </div>
+              <div class="p-4">
+                <p class="font-medium">Notifications</p>
+                <ul class="mt-2">
+                  <li class="border-b py-2">No new notifications</li>
+                  <!-- Add more notifications here -->
+                </ul>
+              </div>
             </div>
-            
-            <script>
-            function toggleNotifications() {
-                var notificationBox = document.getElementById('notificationBox');
-                if (notificationBox.classList.contains('hidden')) {
-                    notificationBox.classList.remove('hidden');
-                } else {
-                    notificationBox.classList.add('hidden');
-                }
-            }
-            </script>
-            
+
             <!--Logo User -->
             <a href="/Profile" role="button" aria-label="User profile">
-              <ion-icon name="person" class="text-white px-3 py-2 icon" style="font-size: 2rem;"></ion-icon>
+              <ion-icon name="person" class="text-white px-2 py-2 icon" style="font-size: 2rem;"></ion-icon>
             </a>
-
 
             <!-- Dropdown dengan tombol panah -->
             <div class="relative" x-data="{ open: false }">
               <!-- Tombol dengan ikon panah -->
               <button @click="open = !open" class="flex items-center text-white focus:outline-none">
-                  <ion-icon :class="open ? 'rotate-180' : 'rotate-0'" name="chevron-down-outline" class="transition-transform duration-200" style="font-size: 1.5rem;"></ion-icon>
+                <ion-icon :class="open ? 'rotate-180' : 'rotate-0'" name="chevron-down-outline" class="transition-transform duration-200" style="font-size: 1.5rem;"></ion-icon>
               </button>
 
               <!-- Dropdown menu -->
               <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-md z-20">
-                <div class="p-3 border-b">
+                <div class="p-3 pb-0 border-b">
                   <p class="font-medium">{{ Auth::user()->name }}</p>
                   <p class="text-sm text-gray-600">{{ Auth::user()->email }}</p>
                 </div>
-                
-                  <ul>
-                      <li>
-                          <a href="/settings" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Setting</a>
-                      </li>
-                      <li>
-                          <a href="/help" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Help Center</a>
-                      </li>
-                      <li>
-                          <form action="{{ route('logout') }}" method="POST" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                              @csrf
-                              <button type="submit" class="w-full text-left">Log Out</button>
-                          </form>
-                      </li>
-                  </ul>
+
+                <div class="m-3">
+                  <form action="{{ route('logout') }}" method="POST" class="block text-sm text-gray-700 hover:bg-gray-100">
+                    @csrf
+                    <button type="submit" class="w-full text-left">Log Out</button>
+                  </form>
+                </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
     </nav>
     
     <!-- HERO -->
@@ -228,10 +205,9 @@
     <!-- FOOTER -->
     <footer class="py-3 my-4 bg-gray-800">
       <ul class="nav justify-content-center mb-3">
-        <li class="nav-item font-medium"><a href="#" class="nav-link px-2 text-white">Home</a></li>
+        <li class="nav-item font-medium"><a href="/" class="nav-link px-2 text-white">Home</a></li>
         <li class="nav-item font-medium"><a href="#about-us" class="nav-link px-2 text-white">About</a></li>
-        <li class="nav-item font-medium"><a href="/Community" class="nav-link px-2 text-white">Community</a></li>
-        <li class="nav-item font-medium"><a href="#" class="nav-link px-2 text-white">Help Center</a></li>
+        <li class="nav-item font-medium"><a href="/api/community" class="nav-link px-2 text-white">Community</a></li>
       </ul>
 
       <ul class="social_icon border-bottom flex justify-center space-x-4 pb-3 mb-3">
@@ -239,7 +215,11 @@
         <li><a href="h"><ion-icon name="logo-instagram" class="text-white"></ion-icon></a></li>
         <li><a href=""><ion-icon name="logo-facebook" class="text-white"></ion-icon></a></li>
       </ul>
-    
+      
+      <p class="text-center text-white font-medium">
+        <ion-icon name="call" class="text-white"></ion-icon> +62 896 0362 7661
+      </p>
+
       <p class="text-center text-white font-medium">Made in ❤️ HobbyNest@2024</p>
     </footer>
 
@@ -250,7 +230,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const createCommunityButton = document.getElementById('create-community');

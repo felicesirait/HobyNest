@@ -9,6 +9,9 @@ use App\Http\Controllers\Api\AuthController;
 // Rute untuk komunitas
 Route::get('/community/create', [CommunityController::class, 'create'])->name('community.create');
 Route::post('/community', [CommunityController::class, 'store'])->name('community.store');
+
+
+//jelaskan
 Route::get('/community/{id}', [CommunityController::class, 'show'])->name('community.show');
 Route::get('/community', [CommunityController::class, 'index'])->name('community.index');
 
@@ -23,6 +26,7 @@ Route::get('/community/{id}/forum', [CommunityController::class, 'forum'])->name
 // Route::post('/Sign Up', [AuthManager::class, 'signUpPost'])->name('signUp.post');
 
 
+//jelaskan
 Route::post('SignUp', [AuthController::class, 'SignUp']);
 Route::get('getAllUsers', [AuthController::class, 'getAllUsers']);
 

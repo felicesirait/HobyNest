@@ -86,15 +86,15 @@
         <div x-show="isOpen" class="md:hidden" id="mobile-menu">
           <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="#" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white no-underline" aria-current="page">Home</a>
-            <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white no-underline">Sign In</a>
-            <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white no-underline">Sign Up</a>
+            <a href="/" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white no-underline" aria-current="page">Home</a>
+            <a href="/Sign In" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white no-underline">Sign In</a>
+            <a href="/Sign Up" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white no-underline">Sign Up</a>
           </div>
         </div>
       </nav>
     
     <!-- HERO -->
-    <section class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 bg-white">
+    <section id="hero" class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 bg-white">
       <div class="flex flex-col lg:flex-row items-center lg:items-stretch">
         <!-- Text Section -->
         <div class="lg:w-1/2 mb-6 lg:mb-0 flex items-center text-box">
@@ -118,7 +118,7 @@
     </section>
 
     <!-- ABOUT -->
-    <section class="about bg-about">
+    <section id="about" class="about bg-about">
       <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         <div class="flex flex-col lg:flex-row items-center lg:items-stretch">
           <!-- Image Section -->
@@ -149,7 +149,7 @@
     </section>
 
     <!-- FITUR -->
-    <section class="features bg-white py-3 my-sm-2 my-md-4 my-lg-5">
+    <section id="features" class="features bg-white py-3 my-sm-2 my-md-4 my-lg-5">
       <div>
         <h1 class="heading text-4.5xl font-bold tracking-tight text-black text-center" style="margin-bottom: 34px;">Our Featured</h1>
       </div>
@@ -189,10 +189,10 @@
     <!-- FOOTER -->
     <footer class="py-3 my-4 bg-gray-800">
       <ul class="nav justify-content-center mb-3">
-        <li class="nav-item font-medium"><a href="#" class="nav-link px-2 text-white">Home</a></li>
-        <li class="nav-item font-medium"><a href="#" class="nav-link px-2 text-white">About</a></li>
-        <li class="nav-item font-medium"><a href="#" class="nav-link px-2 text-white">Features</a></li>
-        <li class="nav-item font-medium"><a href="#" class="nav-link px-2 text-white">Help Center</a></li>
+        <li class="nav-item font-medium"><a href="#hero" class="nav-link px-2 text-white">Home</a></li>
+        <li class="nav-item font-medium"><a href="#about" class="nav-link px-2 text-white">About</a></li>
+        <li class="nav-item font-medium"><a href="#features" class="nav-link px-2 text-white">Features</a></li>
+        {{-- <li class="nav-item font-medium"><a href="#" class="nav-link px-2 text-white">Help Center</a></li> --}}
       </ul>
 
       <ul class="social_icon border-bottom flex justify-center space-x-4 pb-3 mb-3">
@@ -200,7 +200,11 @@
         <li><a href="h"><ion-icon name="logo-instagram" class="text-white"></ion-icon></a></li>
         <li><a href=""><ion-icon name="logo-facebook" class="text-white"></ion-icon></a></li>
       </ul>
-    
+
+        <p class="text-center text-white font-medium">
+          <ion-icon name="call" class="text-white"></ion-icon> +62 896 0362 7661
+        </p>
+
       <p class="text-center text-white font-medium">Made in ❤️ HobbyNest@2024</p>
     </footer>
 
